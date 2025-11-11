@@ -1,4 +1,4 @@
-# Adoção+
+# Adoção+ 🐶
 
 Projeto Adoção+
 
