@@ -16,7 +16,7 @@ def carregar_animais():
         with open(ARQUIVO_ANIMAIS, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 dados = linha.strip().split(";")
-                if len(dados) >= 7: 
+                if len(dados) >= 7:
                     animal = {
                         "nome": dados[0],
                         "especie": dados[1],
@@ -26,13 +26,19 @@ def carregar_animais():
                         "data_chegada": dados[5],
                         "comportamento": dados[6]
                     }
-                    # Load care activities if they exist (assuming they will be stored as a string representation of a list)
                     if len(dados) > 7 and dados[7]:
-                        import json
-                        try:
-                            animal["cuidados"] = json.loads(dados[7])
-                        except json.JSONDecodeError:
-                            animal["cuidados"] = [] # Handle potential errors
+                        care_activities_str = dados[7]
+                        animal["cuidados"] = []
+                        if care_activities_str:
+                            for care_str in care_activities_str.split("||"):
+                                care_data = care_str.split("|")
+                                if len(care_data) == 3:
+                                    cuidado = {
+                                        "descricao": care_data[0],
+                                        "data_prevista": care_data[1],
+                                        "responsavel": care_data[2]
+                                    }
+                                    animal["cuidados"].append(cuidado)
                     else:
                         animal["cuidados"] = []
                     animais.append(animal)
@@ -43,9 +49,8 @@ def carregar_animais():
 def salvar_animais(animais):
     with open(ARQUIVO_ANIMAIS, "w", encoding="utf-8") as arquivo:
         for a in animais:
-            import json
-            # Save care activities as a JSON string
-            cuidados_str = json.dumps(a.get("cuidados", []))
+            cuidados_list = a.get("cuidados", [])
+            cuidados_str = "||".join([f"{c['descricao']}|{c['data_prevista']}|{c['responsavel']}" for c in cuidados_list])
             linha = f"{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']};{cuidados_str}\n"
             arquivo.write(linha)
 
@@ -122,41 +127,6 @@ def excluir_animal(animais):
     print("\nAnimal não encontrado.")
     pausar()
 
-def menu():
-    animais = carregar_animais()
-    while True:
-        limpar_tela()
-        print("=== Sistema Adoção+ ===")
-        print("1. Adicionar Animal")
-        print("2. Ver Animais")
-        print("3. Editar Animal")
-        print("4. Excluir Animal")
-        print("5. Adicionar Cuidado/Atividade") 
-        print("6. Ver Cuidados/Atividades") 
-        print("0. Sair")
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            adicionar_animal(animais)
-        elif opcao == "2":
-            limpar_tela()
-            mostrar_tabela(animais)
-            pausar()
-        elif opcao == "3":
-            editar_animal(animais)
-        elif opcao == "4":
-            excluir_animal(animais)
-        elif opcao == "5": 
-            adicionar_cuidado(animais)
-        elif opcao == "6": 
-            mostrar_cuidados(animais)
-        elif opcao == "0":
-            print("Saindo do sistema...")
-            break
-        else:
-            print("Opção inválida!")
-            pausar()
-
 def adicionar_cuidado(animais):
     limpar_tela()
     mostrar_tabela(animais)
@@ -203,6 +173,42 @@ def mostrar_cuidados(animais):
             return
     print("\nAnimal não encontrado.")
     pausar()
+
+
+def menu():
+    animais = carregar_animais()
+    while True:
+        limpar_tela()
+        print("=== Sistema Adoção+ ===")
+        print("1. Adicionar Animal")
+        print("2. Ver Animais")
+        print("3. Editar Animal")
+        print("4. Excluir Animal")
+        print("5. Adicionar Cuidado/Atividade")
+        print("6. Ver Cuidados/Atividades") 
+        print("0. Sair")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            adicionar_animal(animais)
+        elif opcao == "2":
+            limpar_tela()
+            mostrar_tabela(animais)
+            pausar()
+        elif opcao == "3":
+            editar_animal(animais)
+        elif opcao == "4":
+            excluir_animal(animais)
+        elif opcao == "5": 
+            adicionar_cuidado(animais)
+        elif opcao == "6": 
+            mostrar_cuidados(animais)
+        elif opcao == "0":
+            print("Saindo do sistema...")
+            break
+        else:
+            print("Opção inválida!")
+            pausar()
 
 if __name__ == "__main__":
     menu()
