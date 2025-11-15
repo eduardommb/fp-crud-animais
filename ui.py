@@ -1,40 +1,50 @@
-import tkinter
+import tkinter as tk
+window = tk.Tk()
 
-window = tkinter.Tk() #janela
-window.geometry("500x500") #tamanho da janela
-window.title("Adoção +") #titulo da janela
+#cores
+verde = "#1FF094"
+branco = "#ffffff"
+vermelho = "#f03d1f"
 
-#mudar icone
-#icone = tkinter.PhotoImage(file="nome-do-arquivo.png") #caminho da imagem
-#window.iconphoto(True, icone) #colocar imagem
 
-#background
-window.config(background = "#505050") #cinza
+# configurações gerais
+window.geometry("700x400")
+window.title("Adoção +")
+window.config(
+    background= verde
+)
 
-#label/div
-titulo = tkinter.Label(window,
-                        text = "Adoção +", #texto
-                        font = ('Arial', 50, 'bold'), #estilo e tamanho da fonte
-                        fg = "white", #cor do texto
-                        bg = "#505050",#cor de fundo
-                        relief = tkinter.RAISED, #borda
-                        bd = 10, #tamanho da borda
-                        padx = 20, #padding do x
-                        pady = 20, #padding do y
-                        #image = var_com_a_imagem,
-                        #compound = 'bottom' #posicao da imagem em relacao ao texto
-                        )
-#titulo.pack() #colcoar o label na posição padrao
-titulo.place(x=50, y=0) #colocar em uma posição especifica
+#componentes
+def logo_grande():
+    logo_adocao = tk.Label(
+        window, 
+        text= "Adoção",
+        font = ('Roboto', 40, 'bold'),
+        fg= branco, 
+        bg= verde
+    )
+    logo_adocao.place(
+        x = 70,
+        y = 50
+    )
 
-def click():
-    print("Botao apertado")
+    logo_plus = tk.Label(
+        window, 
+        text="+",
+        font=("Roboto", 50, "bold"),
+        bg=verde,
+        fg= vermelho
+    )
+    logo_plus.place(
+        x=270,
+        y=40
+    )
 
-#botoes
-botao = tkinter.Button(window,
-                        text = "clique",
-                        command = click, #ao apertar o botao, aciona a funcao 'click'
-                        )
-botao.pack() #aparecer o botao
+#paginas
+def home():
+    logo_grande()
 
-window.mainloop() #rodar
+
+
+home()
+window.mainloop()
