@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from sugestoes import mostrar_sugestoes
 
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv" 
@@ -186,6 +187,7 @@ def menu():
         print("4. Excluir Animal")
         print("5. Adicionar Cuidado/Atividade")
         print("6. Ver Cuidados/Atividades") 
+	print("7. Sugestões Personalizadas")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -203,6 +205,8 @@ def menu():
             adicionar_cuidado(animais)
         elif opcao == "6": 
             mostrar_cuidados(animais)
+	elif opcao == "7":
+            mostrar_sugestoes(animais)
         elif opcao == "0":
             print("Saindo do sistema...")
             break
