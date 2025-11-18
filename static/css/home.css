@@ -1,0 +1,31 @@
+:root{
+    --verde: #1FF094;
+    --branco: #ffffff;
+    --vermelho: #f03d1f;
+    --azul: #441ff0;
+    --amarelo: #efd51e;
+    --cinza: #9e9e9e;
+    --preto: #000000; 
+}
+
+body{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: var(--verde);
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+header .logo .nome_adocao{
+    font-family: "Roboto";
+    font-size: 4rem;
+    color: var(--branco);
+}
+.plus{
+    font-family: 'Roboto';
+    color: var(--vermelho);
+    font: bold;
+}

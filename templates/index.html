@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Adoção +</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 </head>
+
 <body>
-    <h1>teste</h1>
-    <a href={{pag}}>outra pagina</a>
+    <!-- <h1>teste</h1>
+    <a href={{pag}}>outra pagina</a> -->
+
+    <header>
+        <div class="logo">
+            <h1 class="nome_adocao">Adoção</h1>
+            <h1 class="plus">+</h1>
+        </div>
+        <div class="desc">
+            <p>Um software de gerenciamento veterinário e de adoções.</p>
+        </div>
+    </header>
+    <main>
+        <div class="botoes">
+            <button onclick={{crud_pets}}></button>
+            <button onclick={{crud_adotantes}}></button>
+        </div>
+        <img src="" alt="Imagens de pets">
+    </main>
 </body>
+
 </html>
