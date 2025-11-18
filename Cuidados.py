@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from sugestoes import mostrar_sugestoes
+import Adotores as a
 
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv" 
@@ -178,6 +179,7 @@ def mostrar_cuidados(animais):
 
 def menu():
     animais = carregar_animais()
+    adotores = a.ListAdotar()
     while True:
         limpar_tela()
         print("=== Sistema Adoção+ ===")
@@ -187,7 +189,11 @@ def menu():
         print("4. Excluir Animal")
         print("5. Adicionar Cuidado/Atividade")
         print("6. Ver Cuidados/Atividades") 
-		print("7. Sugestões Personalizadas")
+        print("7. Sugestões Personalizadas")
+        print("8. Adicionar Adotor")
+        print("9. Ver Adotores")
+        print("10. Editar Adotores")
+        print("11. Deletar Adotores")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -205,8 +211,18 @@ def menu():
             adicionar_cuidado(animais)
         elif opcao == "6": 
             mostrar_cuidados(animais)
-		elif opcao == "7":
+        elif opcao == "7":
             mostrar_sugestoes(animais)
+        elif opcao == "8":
+            a.AddAdotar(adotores)
+        elif opcao == "9":
+            limpar_tela()
+            a.MostrarAdopt(adotores)
+            pausar()
+        elif opcao == "10":
+            a.EditAdopt(adotores)
+        elif opcao == "11":
+            a.DelAdopt(adotores)
         elif opcao == "0":
             print("Saindo do sistema...")
             break
