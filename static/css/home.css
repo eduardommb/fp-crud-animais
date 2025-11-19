@@ -1,22 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-:root{
-    --verde: #1FF094;
-    --branco: #ffffff;
-    --vermelho: #f03d1f;
-    --azul: #441ff0;
-    --amarelo: #efd51e;
-    --cinza: #9e9e9e;
-    --preto: #000000; 
-}
+@import url('root.css');
 *{
     font-family: "Roboto", sans-serif;
     border: 0;
     margin: 0;
     box-sizing: border-box;
-}
-body{
-    margin: 4rem 6rem;
-    background-color: var(--verde);
 }
 .logo{
     display: flex;
