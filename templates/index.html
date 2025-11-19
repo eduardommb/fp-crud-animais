@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -23,8 +23,14 @@
     </header>
     <main>
         <div class="botoes">
-            <button onclick={{crud_pets}}>Conferir os dados dos animais</button>
-            <button onclick={{crud_adotantes}}>Conferir os dados dos adotantes</button>
+            <button onclick="window.location.href='{{ url_for('ir_crud_pets') }}'">
+            Conferir os dados dos animais
+            </button>
+
+            <button onclick="window.location.href='{{ url_for('ir_crud_adotantes') }}'">
+            Conferir os dados dos adotantes
+            </button>
+
         </div>
         <img src="{{url_for('static', filename='img/animais.png')}}" alt="Imagens de pets">
     </main>
