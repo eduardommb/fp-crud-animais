@@ -1,0 +1,77 @@
+@import url('static/css/root.css');
+header span i{
+    padding: 1rem;
+    border-radius: 20rem;
+    border: 2px solid var(--branco);
+    color: var(--branco);
+    cursor: pointer;
+}
+main{
+    display: flex;
+    justify-content: space-around;
+}   
+
+.infos-gerais-container .titulo h1{
+    color: var(--branco);
+}
+.infos-gerais-container .infos-gerais{
+    font-weight: bold;
+}
+
+.infos-gerais p{
+    font-size: 1.3rem;
+}
+
+.infos-gerais ul{
+    font-size: 1rem;
+}
+
+.infos-gerais-container .botao{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 10%;
+}
+.botao button{
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
+}
+
+.infos_secn{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.infos_secn .foto-container{
+    align-items: flex-start;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.foto-container span i{
+    font-size: 1rem;
+    background-color: var(--cinza);
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.contagem_sugest{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contagem_sugest .contagem{
+    background-color: var(--vermelho);
+    color: var(--branco);
+    padding: 15px;
+    width: 100%;
+    font-weight: bold;
+}
