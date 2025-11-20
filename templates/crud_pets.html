@@ -42,13 +42,12 @@
                 </tr>
             </thead>
             <tbody>
-                
                 {% for a in lista_pets %}
                 <tr>
                     <td> <a href="/pet/{{a.id}}">{{ a.nome }}</a></td>
                     <td>{{ a.especie }}</td>
                     <td>{{ a.raca }}</td>
-                    <td>{{ a.idade }}</td>
+                    <td>{{ a.idade }} ano(s)</td>
                     <td>{{ a.saude }}</td>
                     <td>{{ a.data_chegada }}</td>
                     <td>{{ a.comportamento }}</td>

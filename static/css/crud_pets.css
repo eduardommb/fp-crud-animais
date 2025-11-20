@@ -3,12 +3,65 @@
     display: flex;
     justify-content: space-between;
 }
+.titulos p{
+    color: var(--amarelo);
+    font-size: 2rem;
+    font-weight: bold;
+}
+.logo{
+    display: flex;
+    gap: 10px;
+}
+.logo .nome_adocao{
+    color: var(--branco);
+}
+.logo .plus{
+    color: var(--vermelho);
+}
+.funcoes{
+    margin-top: 3%;
+}
+.opcoes{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+.opcoes span i{
+    background-color: var(--cinza);
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+.tarefas button{
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+table{
+    background-color: var(--verde-escuro);
+    border-radius: 5px;
+}
 table th{
     background-color: var(--azul);
     color: var(--branco);
     padding: 0.5rem;
+    border-radius: 5px 5px 0 0;
 }
 table td{
     text-align: center;
-    padding: 0.3rem;
+    padding: 0.3rem 1rem;
+    color: var(--branco);
+}
+table td a{
+    color: var(--branco);
+    text-decoration: none;
 }
