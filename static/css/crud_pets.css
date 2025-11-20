@@ -1,67 +1,156 @@
 @import url('root.css');
-.titulos, .funcoes{
+
+.titulos,
+.funcoes {
     display: flex;
     justify-content: space-between;
 }
-.titulos p{
+
+.titulos p {
     color: var(--amarelo);
     font-size: 2rem;
     font-weight: bold;
 }
-.logo{
+
+.logo {
     display: flex;
     gap: 10px;
 }
-.logo .nome_adocao{
+
+.logo .nome_adocao {
     color: var(--branco);
 }
-.logo .plus{
+
+.logo .plus {
     color: var(--vermelho);
 }
-.funcoes{
+
+.funcoes {
     margin-top: 3%;
 }
-.opcoes{
+
+.opcoes {
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
+    height: fit-content;
+    width: fit-content;
 }
-.opcoes span i{
+
+.opcoes button {
+    border: none;
+    background-color: transparent;
+}
+
+.opcoes button i {
     background-color: var(--cinza);
     border-radius: 50px;
+    font-size: 1rem;
     padding: 10px;
     cursor: pointer;
 }
-.tarefas button{
+
+.tarefas button {
     background-color: var(--azul);
     color: var(--branco);
     padding: 1rem 3rem;
     border-radius: 2rem;
-    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     border: 0;
 }
-main{
+
+main {
     display: flex;
     justify-content: center;
 }
-table{
+
+table {
     background-color: var(--verde-escuro);
     border-radius: 5px;
 }
-table th{
+
+table th {
     background-color: var(--azul);
     color: var(--branco);
     padding: 0.5rem;
     border-radius: 5px 5px 0 0;
 }
-table td{
+
+table td {
     text-align: center;
     padding: 0.3rem 1rem;
     color: var(--branco);
 }
-table td a{
+
+table td a {
     color: var(--branco);
     text-decoration: none;
+}
+
+.caixa-editar-container,
+.caixa-apagar-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.253);
+    justify-content: center;
+    align-items: center;
+}
+
+#caixa-editar,
+#caixa-apagar {
+    background-color: var(--cinza-claro);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#caixa-editar, #caixa-apagar p {
+    font-weight: bold;
+}
+
+.caixa-de-texto {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa-de-texto input {
+    background-color: transparent;
+    border: 1px solid var(--cinza);
+    border-radius: 5px;
+    height: 2rem;
+    outline: none;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancelar {
+    background-color: var(--cinza);
+    color: var(--branco);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
+}
+
+#editar-confirmar,
+#apagar-confirmar {
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
 }

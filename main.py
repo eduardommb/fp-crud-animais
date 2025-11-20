@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
 import CRUD as crud
 #inicializacao
 app = Flask(__name__, static_folder='static')
@@ -26,7 +26,8 @@ def ir_pagina_pet(id_pet):
     for a in animais:
         if a["id"] == id_pet:
             return render_template("pet.html", pet=a)
-    return render_template('nao_encontrado.html'), 404
+    return render_template('404.html'), 404
+
 
 #execucao
 app.run(debug="true")

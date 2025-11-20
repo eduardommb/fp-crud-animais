@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
     <title>Dados dos pets cadastrados</title>
 </head>
+
 <body>
     <header>
         <nav class="titulos">
@@ -18,9 +20,9 @@
         </nav>
         <nav class="funcoes">
             <nav class="opcoes">
-                <span id="add"><i class="fa-solid fa-plus"></i></span>
-                <span id="editar"><i class="fa-solid fa-pencil"></i></span>
-                <span id="apagar"><i class="fa-solid fa-trash"></i></span>
+                <button id="add" onclick="criar()"><i class="fa-solid fa-plus"></i></button>
+                <button id="editar" onclick="editar()"><i class="fa-solid fa-pencil"></i></button>
+                <button id="apagar" onclick="apagar()"><i class="fa-solid fa-trash"></i></button>
             </nav>
             <nav class="tarefas">
                 <button>Tarefas</button>
@@ -55,6 +57,51 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <nav class="caixa-editar-container">
+            <section id="caixa-editar">
+                <p>Digite o nome do pet em que deseja editar: </p>
+                <div class="caixa-de-texto">
+                    <input type="text" placeholder="Nome do pet" id="input-editar">
+                </div>
+                <div class="botoes">
+                    <button class="cancelar" onclick="voltar()">Cancelar</button>
+                    <button id="editar-confirmar">Editar</button>
+                </div>
+            </section>
+        </nav>
+
+        <nav class="caixa-apagar-container">
+            <section id="caixa-apagar">
+                <p>Digite o nome do pet em que deseja apagar: </p>
+                <div class="caixa-de-texto">
+                    <input type="text" placeholder="Nome do pet" id="input-apagar">
+                </div>
+                <div class="botoes">
+                    <button class="cancelar" onclick="voltar()">Cancelar</button>
+                    <button id="apagar-confirmar">Apagar</button>
+                </div>
+            </section>
+        </nav>
+
     </main>
 </body>
+<script>
+    function criar() {
+        window.location.href = "/criar_pet";
+    }
+    function editar() {
+        document.querySelector('.caixa-editar-container').style.display = 'flex';
+    }
+    function apagar() {
+        document.querySelector('.caixa-apagar-container').style.display = 'flex';
+    }
+    function voltar() {
+        document.querySelector('.caixa-editar-container').style.display = 'none';
+        document.querySelector('.caixa-apagar-container').style.display = 'none';
+    }
+
+    
+</script>
+
 </html>
