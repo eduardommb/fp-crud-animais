@@ -1,0 +1,79 @@
+@import url('root.css');
+*{
+    font-family: "Roboto", sans-serif;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 3%;
+}
+header .logo .nome_adocao{
+    font-size: 4rem;
+    color: var(--branco);
+}
+.plus{
+    color: var(--vermelho);
+    font: bold;
+    font-size: 5rem;
+}
+.desc{
+    margin-top: 5%;
+}
+.desc p{
+    font-size: 1.5rem;
+    max-width: 40%;
+}
+.botoes{
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    gap: 2rem;
+    margin-top: 5%;
+}
+.botoes button{
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 5% 3%;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+main img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.desc{
+    margin-top: 5%;
+}
+.desc p{
+    font-size: 1.5rem;
+    max-width: 40%;
+}
+.botoes{
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    gap: 2rem;
+    margin-top: 5%;
+}
+.botoes button{
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 5% 3%;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+main img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}

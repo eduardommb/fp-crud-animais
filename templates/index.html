@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção +</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+</head>
+
+<body>
+    <!-- <h1>teste</h1>
+    <a href={{pag}}>outra pagina</a> -->
+
+    <header>
+        <div class="logo">
+            <h1 class="nome_adocao">Adoção</h1>
+            <h1 class="plus">+</h1>
+        </div>
+        <div class="desc">
+            <p>Um software de gerenciamento veterinário e de adoções.</p>
+        </div>
+    </header>
+    <main>
+        <div class="botoes">
+            <button onclick="window.location.href='{{ url_for('ir_crud_pets') }}'">
+            Conferir os dados dos animais
+            </button>
+
+            <button onclick="window.location.href='{{ url_for('ir_crud_adotantes') }}'">
+            Conferir os dados dos adotantes
+            </button>
+
+        </div>
+        <img src="{{url_for('static', filename='img/animais.png')}}" alt="Imagens de pets">
+    </main>
+</body>
+
+</html>
