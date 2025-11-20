@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pet.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pet.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
-    <title>Informações de 'pet'</title>
+    <title>Informações de {{pet.nome}}</title>
 </head>
 <body>
     <header>
         <span>
-            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left" onclick="window.location.href='{{url_for('ir_crud_pets')}}'"></i>
         </span>
     </header>
 
     <main>
         <section class="infos-gerais-container">
             <div class="titulo">
-                <h1>nome</h1>
+                <h1>{{pet.nome}}</h1>
             </div>
             <div class="infos-gerais">
                 <p>Informações gerais</p>
-                <ul>especie</ul>
-                <ul>Raça</ul>
-                <ul>idade</ul>
+                <ul>Espécie: {{pet.especie}}</ul>
+                <ul>Raça: {{pet.raca}}</ul>
+                <ul>Idade: {{pet.idade}} ano(s)</ul>
 
                 <p>Saúde</p>
-                <ul>estado_saude</ul>
-                <ul>data_chegada</ul>
-                <ul>comportamento</ul>
+                <ul>Estado: {{pet.saude}}</ul>
+                <ul>Data de chegada: {{pet.data_chegada}}</ul>
+                <ul>Comportamento observado: {{pet.comportamento}}</ul>
             </div>
             <div class="botao">
                 <button>Tarefas</button>
@@ -40,7 +40,7 @@
                 <span>
                     <i class="fa-solid fa-pencil"></i>
                 </span>
-                <img src="img/pets/300x300.svg" alt="">
+                <img src="{{url_for('static', filename='img/pets/300x300.svg')}}" alt="">
             </div>
             <div class="contagem_sugest">
                 <div class="contagem">Restam dias</div>

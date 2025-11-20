@@ -1,4 +1,4 @@
-@import url('static/css/root.css');
+@import url('root.css');
 header span i{
     padding: 1rem;
     border-radius: 20rem;
@@ -11,11 +11,20 @@ main{
     justify-content: space-around;
 }   
 
+.infos-gerais-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .infos-gerais-container .titulo h1{
     color: var(--branco);
 }
 .infos-gerais-container .infos-gerais{
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .infos-gerais p{
