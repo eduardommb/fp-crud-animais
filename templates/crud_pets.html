@@ -27,23 +27,34 @@
             </nav>
         </nav>
     </header>
+
     <main>
         <table>
-            <tr>Nome</tr>
-            <tr>Espécie</tr>
-            <tr>Raça</tr>
-            <tr>Idade</tr>
-            <tr>Saúde</tr>
-            <tr>Data de chegada</tr>
-            <tr>Comportamento</tr>
-
-            <td>Nome_pet</td>
-            <td>especie_pet</td>
-            <td>raça_pet</td>
-            <td>idade_pet</td>
-            <td>saúde_pet</td>
-            <td>data_pet</td>
-            <td>comportamento_pet</td>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Espécie</th>
+                    <th>Raça</th>
+                    <th>Idade</th>
+                    <th>Saúde</th>
+                    <th>Data de chegada</th>
+                    <th>Comportamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for a in lista_pets %}
+                <tr>
+                    <td> <a href="/pet/{{a.id}}">{{ a.nome }}</a></td>
+                    <td>{{ a.especie }}</td>
+                    <td>{{ a.raca }}</td>
+                    <td>{{ a.idade }}</td>
+                    <td>{{ a.saude }}</td>
+                    <td>{{ a.data_chegada }}</td>
+                    <td>{{ a.comportamento }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </main>
 </body>

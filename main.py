@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for
-
+import CRUD as crud
 #inicializacao
 app = Flask(__name__, static_folder='static')
 
@@ -13,11 +13,20 @@ def ir_home():
 
 @app.route("/crud_pets")
 def ir_crud_pets():
-    return render_template('crud_pets.html')
+    lista_pets = crud.carregar_animais()
+    return render_template('crud_pets.html', lista_pets = lista_pets)
 
 @app.route('/crud_adotantes')
 def ir_crud_adotantes():
     return render_template('crud_adotantes.html')
+
+@app.route('/pet/<int:id_pet>')
+def ir_pagina_pet(id_pet):
+    animais = crud.carregar_animais()
+    for a in animais:
+        if a["id"] == id_pet:
+            return render_template("pet.html", pet=a)
+    return render_template('nao_encontrado.html'), 404
 
 #execucao
 app.run(debug="true")

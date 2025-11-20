@@ -17,14 +17,18 @@ def pausar():
 
 #Usado após efetuar com sucesso a opcção escolhida
 
+animais = []
+novo_id = 0
 def carregar_animais():
-    animais = []
+    animais.clear()
     try:
         with open(ARQUIVO_ANIMAIS, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 dados = linha.strip().split(";")
                 if len(dados) == 7:
+                    novo_id = len(animais) + 1
                     animal = {
+                        "id": novo_id,
                         "nome": dados[0],
                         "especie": dados[1],
                         "raca": dados[2],
@@ -35,7 +39,7 @@ def carregar_animais():
                     }
                     animais.append(animal)
     except FileNotFoundError:
-        pass
+        print("arquivo vazio ou nao encontrado")
     return animais
 
 #Aqui cria-se uma lista para os animais cadastrados e relaciona o arquivo com a seleção das opções
@@ -115,6 +119,7 @@ def editar_animal(animais): #Aqui vamos criar uma função que permita ao usuár
             print("\nAnimal atualizado com sucesso!") 
             pausar()
             return 
+        
     print("\nAnimal não encontrado.") #Se o animal não for encontrado, ou seja, se a["nome"].lower() =! nome.lower():
     pausar()
 
@@ -129,7 +134,7 @@ def excluir_animal(animais): #Função restritiva para excluir animal
             print("\nAnimal removido com sucesso!")
             pausar()
             return
-    print("\nAnimal não encontrado.") |#Caso não encontre na lista o nome do animal
+    print("\nAnimal não encontrado.") #Caso não encontre na lista o nome do animal
     pausar()
 
 #Aqui estamos criando uma função apenas para salvar o menu
