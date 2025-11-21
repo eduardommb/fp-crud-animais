@@ -1,0 +1,56 @@
+@import url('root.css');
+header span i{
+    padding: 1rem;
+    border-radius: 20rem;
+    border: 2px solid var(--branco);
+    color: var(--branco);
+    cursor: pointer;
+}
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+main .titulo h1{
+    color: var(--branco);
+    margin: 1rem 0;
+}
+main form .infos-container{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-evenly;
+}
+main form .infos-container hr{
+    border: 1px solid var(--branco);
+    height: auto;
+}
+.info-gerais, .info_saude{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 0.5rem;
+}
+.info-gerais input, .info_saude input{
+    background-color: var(--cinza-claro);
+    border: 1px solid var(--cinza);
+    border-radius: 5px;
+    height: 2rem;
+    width: 20rem;
+    outline: none; 
+    padding-left: 0.5rem;
+}
+main form .botao{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+main form .botao button{
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
+}

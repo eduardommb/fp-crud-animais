@@ -20,9 +20,9 @@
         </nav>
         <nav class="funcoes">
             <nav class="opcoes">
-                <button id="add" onclick="criar()"><i class="fa-solid fa-plus"></i></button>
-                <button id="editar" onclick="editar()"><i class="fa-solid fa-pencil"></i></button>
-                <button id="apagar" onclick="apagar()"><i class="fa-solid fa-trash"></i></button>
+                <button id="add" onclick="abrir_criar()"><i class="fa-solid fa-plus"></i></button>
+                <button id="editar" onclick="abrir_editar()"><i class="fa-solid fa-pencil"></i></button>
+                <button id="apagar" onclick="abrir_apagar()"><i class="fa-solid fa-trash"></i></button>
             </nav>
             <nav class="tarefas">
                 <button>Tarefas</button>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="botoes">
                     <button class="cancelar" onclick="voltar()">Cancelar</button>
-                    <button id="editar-confirmar">Editar</button>
+                    <button id="editar-confirmar" onclick="">Editar</button>
                 </div>
             </section>
         </nav>
@@ -87,13 +87,15 @@
     </main>
 </body>
 <script>
-    function criar() {
+    function abrir_criar() {
         window.location.href = "/criar_pet";
     }
-    function editar() {
+    function abrir_editar() {
         document.querySelector('.caixa-editar-container').style.display = 'flex';
     }
-    function apagar() {
+
+    
+    function abrir_apagar() {
         document.querySelector('.caixa-apagar-container').style.display = 'flex';
     }
     function voltar() {
@@ -101,7 +103,18 @@
         document.querySelector('.caixa-apagar-container').style.display = 'none';
     }
 
-    
+    function confirmar_editar() {
+        const nomePet = document.getElementById('input-editar').value;
+        window.location.href = `/editar_pet/${nomePet}`;
+    }
+
+    function confirmar_apagar() {
+        const nomePet = document.getElementById('input-apagar').value;
+        let confirmacao = confirm(`Tem certeza que deseja apagar o pet ${nomePet}?`);
+        if (confirmacao) {
+            console.log("Apagando pet:");
+        }
+    }
 </script>
 
 </html>

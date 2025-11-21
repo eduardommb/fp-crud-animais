@@ -10,7 +10,9 @@
 <body>
     <header>
         <span>
-            <i class="fa-solid fa-arrow-left" onclick="window.location.href='{{url_for('ir_crud_pets')}}'"></i>
+            <a href="{{ url_for('ir_crud_pets') }}" aria-label="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
         </span>
     </header>
 
