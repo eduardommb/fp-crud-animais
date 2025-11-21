@@ -40,10 +40,30 @@
                 </div>
             </div>
             <div class="botao">
-                <button type="submit">Adicionar</button>
+                <button type="submit" onclick="adicionarPet()">Adicionar</button>
             </div>
         </form>
     </main>
 </body>
+<script>
+    function adicionarPet() {
+        let nome = document.getElementById('nome').value;
+        let especie = document.getElementById('especie').value;
+        let raca = document.getElementById('raca').value;
+        let idade = document.getElementById('idade').value;
+        let estado_saude = document.getElementById('estado_saude').value;
+        let data_chegada = document.getElementById('data_chegada').value;
+        let comportamento = document.getElementById('comportamento').value;
+
+
+        if (!nome || !especie || !idade || !raca || !estado_saude || !data_chegada || !comportamento) {
+            alert("Preencha todos os campos obrigatórios!");
+            return;
+        }
+
+        // Se estiver tudo ok, envia o formulário
+        document.querySelector("form").submit();
+    }
+</script>
 
 </html>
