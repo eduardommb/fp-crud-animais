@@ -64,6 +64,12 @@ main{
     gap: 0.5rem;
 }
 
+.foto-container img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
 .foto-container span i{
     font-size: 1rem;
     background-color: var(--cinza);

@@ -37,7 +37,7 @@ def carregar_animais():
 
 
 def salvar_animais(animais):
-    with open(ARQUIVO_ANIMAIS, "w", encoding="utf-8") as arquivo:
+    with open(ARQUIVO_ANIMAIS, "a", encoding="utf-8") as arquivo:
         for a in animais:
             linha = f"{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']};{a['nome_arquivo']}\n"
             arquivo.write(linha)

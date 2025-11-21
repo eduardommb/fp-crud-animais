@@ -42,7 +42,7 @@
                 <span>
                     <i class="fa-solid fa-pencil"></i>
                 </span>
-                <img src="{{ animal.foto }}" alt="">
+                <img src="{{ url_for('static', filename='fotos_pets/' + pet.nome_arquivo) }}" alt="">
             </div>
             <div class="contagem_sugest">
                 <div class="contagem">Restam dias</div>

@@ -46,7 +46,7 @@ def criar_pet():
         nome_arquivo = None
 
     # salvar no csv
-    crud.adicionar_animal_csv(
+    crud.adicionar_animal(
         nome,
         especie,
         raca,
