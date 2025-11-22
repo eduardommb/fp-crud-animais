@@ -34,6 +34,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Espécie</th>
                     <th>Raça</th>
@@ -46,6 +47,7 @@
             <tbody>
                 {% for a in lista_pets %}
                 <tr>
+                    <td>{{ a.id }}</td>
                     <td> <a href="/pet/{{a.id}}">{{ a.nome }}</a></td>
                     <td>{{ a.especie }}</td>
                     <td>{{ a.raca }}</td>
@@ -59,29 +61,29 @@
         </table>
 
         <nav class="caixa-editar-container">
-            <section id="caixa-editar">
+            <form action="/encontrar_pet" method="POST" id="caixa-editar">
                 <p>Digite o nome do pet em que deseja editar: </p>
                 <div class="caixa-de-texto">
-                    <input type="text" placeholder="Nome do pet" id="input-editar">
+                    <input type="text" placeholder="Nome do pet" id="input-editar" name="nome">
                 </div>
                 <div class="botoes">
-                    <button class="cancelar" onclick="voltar()">Cancelar</button>
-                    <button id="editar-confirmar" onclick="">Editar</button>
+                    <button class="cancelar" onclick="voltar()" type="button">Cancelar</button>
+                    <button id="editar-confirmar" type="submit">Editar</button>
                 </div>
-            </section>
+            </form>
         </nav>
 
         <nav class="caixa-apagar-container">
-            <section id="caixa-apagar">
+            <form action="/encontrar_pet-apagar" method="POST" id="caixa-apagar">
                 <p>Digite o nome do pet em que deseja apagar: </p>
                 <div class="caixa-de-texto">
-                    <input type="text" placeholder="Nome do pet" id="input-apagar">
+                    <input type="text" placeholder="Nome do pet" id="input-apagar" name="nome">
                 </div>
                 <div class="botoes">
-                    <button class="cancelar" onclick="voltar()">Cancelar</button>
-                    <button id="apagar-confirmar">Apagar</button>
+                    <button class="cancelar" onclick="voltar()" type="button">Cancelar</button>
+                    <button id="apagar-confirmar" type="submit">Apagar</button>
                 </div>
-            </section>
+            </form>
         </nav>
 
     </main>
@@ -101,11 +103,6 @@
     function voltar() {
         document.querySelector('.caixa-editar-container').style.display = 'none';
         document.querySelector('.caixa-apagar-container').style.display = 'none';
-    }
-
-    function confirmar_editar() {
-        const nomePet = document.getElementById('input-editar').value;
-        window.location.href = `/editar_pet/${nomePet}`;
     }
 
     function confirmar_apagar() {

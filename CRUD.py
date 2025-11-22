@@ -17,17 +17,22 @@ def carregar_animais():
         with open(ARQUIVO_ANIMAIS, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 dados = linha.strip().split(";")
-                if len(dados) == 8:
+                if len(dados) == 9:
+                    try:
+                        id_pet = int(dados[0])
+                    except ValueError:
+                        id_pet = len(animais) + 1
+
                     animal = {
-                        "id": len(animais) + 1,
-                        "nome": dados[0],
-                        "especie": dados[1],
-                        "raca": dados[2],
-                        "idade": int(dados[3]),
-                        "saude": dados[4],
-                        "data_chegada": dados[5],
-                        "comportamento": dados[6],
-                        "nome_arquivo": dados[7]
+                        "id": id_pet,
+                        "nome": dados[1],
+                        "especie": dados[2],
+                        "raca": dados[3],
+                        "idade": int(dados[4]),
+                        "saude": dados[5],
+                        "data_chegada": dados[6],
+                        "comportamento": dados[7],
+                        "nome_arquivo": dados[8]
                     }
                     animais.append(animal)
     except FileNotFoundError:
@@ -35,12 +40,41 @@ def carregar_animais():
 
     return animais
 
-
 def salvar_animais(animais):
-    with open(ARQUIVO_ANIMAIS, "a", encoding="utf-8") as arquivo:
+    with open(ARQUIVO_ANIMAIS, "w", encoding="utf-8") as arquivo:
         for a in animais:
-            linha = f"{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']};{a['nome_arquivo']}\n"
+            linha = f"{a['id']};{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']};{a['nome_arquivo']}\n"
             arquivo.write(linha)
+
+def calcular_novo_id():
+    carregar_animais()
+    if not animais:
+        return 1
+    else:
+        maior_id = 0
+        for animal in animais:
+            if animal.get("id", 0) > maior_id:
+                maior_id = animal["id"]
+        return maior_id + 1
+
+#buscar pet pelo html
+def buscar_pet_por_nome(nome):
+    print("entrou na funcao buscar pet por nome")
+    carregar_animais()
+    nome_procurar = nome.strip().lower()
+    for a in animais:
+        if a["nome"].strip().lower() == nome_procurar:
+            print("Pet encontrado!")
+            return a
+    return None
+def buscar_pet_por_id(id_procurar):
+    carregar_animais()
+    for a in animais:
+        if a["id"] == int(id_procurar):
+                print("Pet encontrado!")
+                return a
+    return None
+
 
 
 def mostrar_tabela(animais):
@@ -49,14 +83,16 @@ def mostrar_tabela(animais):
         return
 
     print()
-    print(f"{'Nome':<15}{'Espécie':<15}{'Raça':<15}{'Idade':<8}{'Saúde':<20}{'Chegada':<15}{'Comportamento':<20}")
+    print(f"{'ID':<5}{'Nome':<15}{'Espécie':<15}{'Raça':<15}{'Idade':<8}{'Saúde':<20}{'Chegada':<15}{'Comportamento':<20}")
     print("-" * 108)
     for a in animais:
-        print(f"{a['nome']:<15}{a['especie']:<15}{a['raca']:<15}{a['idade']:<8}{a['saude']:<20}{a['data_chegada']:<15}{a['comportamento']:<20}")
-
+        print(f"{a['id']:<5}{a['nome']:<15}{a['especie']:<15}{a['raca']:<15}{a['idade']:<8}{a['saude']:<20}{a['data_chegada']:<15}{a['comportamento']:<20}")
 
 def adicionar_animal(nome, especie, raca, idade, saude, data_chegada, comportamento, nome_arquivo):
+    carregar_animais()
+    novo_id = calcular_novo_id()
     animal = {
+        "id": novo_id,
         "nome": nome,
         "especie": especie,
         "raca": raca,
@@ -64,7 +100,7 @@ def adicionar_animal(nome, especie, raca, idade, saude, data_chegada, comportame
         "saude": saude,
         "data_chegada": data_chegada,
         "comportamento": comportamento,
-        "nome_arquivo": nome_arquivo
+        "nome_arquivo": nome_arquivo or "padrao.jpg"
     }
 
     animais.append(animal)
@@ -115,6 +151,17 @@ def excluir_animal(animais):
 
     print("\nAnimal não encontrado.")
     pausar()
+
+#apagar pet pelo html
+def apagar_pet_por_nome(nome):
+    carregar_animais()
+    nome_procurar = nome.strip().lower()
+    for a in animais:
+        if a["nome"].strip().lower() == nome_procurar:
+            animais.remove(a)
+            salvar_animais(animais)
+            print("Pet apagado com sucesso!")
+            return True
 
 
 def menu():

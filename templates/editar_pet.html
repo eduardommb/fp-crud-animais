@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/criar_pet.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+    <title>Cadastrar novo animal</title>
+</head>
+
+<body>
+    <header>
+        <span>
+            <a href="{{ url_for('ir_crud_pets') }}" aria-label="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </span>
+    </header>
+    <main>
+        <div class="titulo">
+            <h1>Editar animal</h1>
+        </div>
+        <form action="/editar_pet/{{ pet.id }}" method="post" enctype="multipart/form-data">
+            <div class="infos-container">
+                <div class="info-gerais">
+                    <h1>Informações Gerais</h1>
+                    <input type="text" id="nome" name="nome" required placeholder="Nome" value="{{ pet.nome }}">
+                    <input type="text" id="especie" name="especie" required placeholder="Espécie" value="{{ pet.especie }}">
+                    <input type="text" id="raca" name="raca" required placeholder="Raça" value="{{ pet.raca }}">
+                    <input type="number" id="idade" name="idade" required placeholder="Idade" value="{{ pet.idade }}">
+                    <input type="file" id="foto" name="foto" accept="image/*">
+                </div>
+                <hr>
+                <div class="info_saude">
+                    <h1>Saúde</h1>
+                    <input type="text" name="estado_saude" placeholder="Estado de Saúde" id="estado_saude" value="{{ pet.saude }}">
+                    <input type="date" name="data_chegada" id="data_chegada" placeholder="Data de chegada" value="{{ pet.data_chegada }}">
+                    <input type="text" name="comportamento" id="comportamento" placeholder="Comportamento" value="{{ pet.comportamento }}">
+                </div>
+            </div>
+            <div class="botao">
+                <button type="submit" onclick="editarPet()">Editar</button>
+            </div>
+        </form>
+    </main>
+</body>
+<script>
+    function editarPet() {
+        let nome = document.getElementById('nome').value;
+        let especie = document.getElementById('especie').value;
+        let raca = document.getElementById('raca').value;
+        let idade = document.getElementById('idade').value;
+        let estado_saude = document.getElementById('estado_saude').value;
+        let data_chegada = document.getElementById('data_chegada').value;
+        let comportamento = document.getElementById('comportamento').value;
+
+
+        if (!nome || !especie || !idade || !raca || !estado_saude || !data_chegada || !comportamento) {
+            alert("Preencha todos os campos obrigatórios!");
+            return;
+        }
+
+        // Se estiver tudo ok, envia o formulário
+        document.querySelector("form").submit();
+    }
+</script>
+
+</html>

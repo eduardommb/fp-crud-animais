@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
 import CRUD as crud
 
 # inicializacao
@@ -11,7 +12,6 @@ os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 crud_pets = 'crud_pets'
 crud_adotantes = 'crud_adotantes'
-
 
 # rotas
 @app.route("/") 
@@ -39,12 +39,16 @@ def criar_pet():
     # --- Upload da foto ---
     foto = request.files.get("foto")
     if foto and foto.filename != "":
-        caminho_foto = os.path.join(app.config["UPLOAD_FOLDER"], foto.filename)
+        nome_arquivo = secure_filename(foto.filename)
+        caminho_foto = os.path.join(app.config["UPLOAD_FOLDER"], nome_arquivo)
         foto.save(caminho_foto)
-        nome_arquivo = foto.filename
     else:
         nome_arquivo = None
 
+    try:
+        idade = int(idade)
+    except ValueError:
+        idade = 0
     # salvar no csv
     crud.adicionar_animal(
         nome,
@@ -79,6 +83,86 @@ def ir_pagina_pet(id_pet):
             return render_template("pet.html", pet=a)
     return render_template('404.html'), 404
 
+#editar
+@app.route("/encontrar_pet", methods=["POST"])
+def encontrar_pet():
+    print("entrou na funcao encontrar pet")
+    nome = request.form["nome"]
+    pet = crud.buscar_pet_por_nome(nome)
+
+    if pet:
+        print("redirecionando para editar pet; " + str(pet['id']))
+        return redirect(url_for('editar_pet', id=pet['id']))
+    else:
+        return render_template('404.html'), 404
+
+@app.route("/editar_pet/<int:id>")
+def editar_pet(id):
+    print("entrou na funcao editar pet<int:id>")
+    if id:
+        print("id recebido: " + str(id))
+
+    pet = crud.buscar_pet_por_id(id)
+    print(pet)
+    if not pet:
+        return render_template('404.html'), 404
+    else:
+        return render_template("editar_pet.html", pet=pet)
+
+@app.route("/editar_pet/<int:id>", methods=["POST"])
+def editar_pet_post(id):
+    print("entrou na funcao editar pet_post<int:id>")
+    animais = crud.carregar_animais()
+    pet_encontrado = None
+    for a in animais:
+        if a["id"] == id:
+            pet_encontrado = a
+            break
+
+    if not pet_encontrado:
+        return render_template('404.html'), 404
+
+    # pega dados do form
+    pet_encontrado['nome'] = request.form.get('nome')
+    pet_encontrado['especie'] = request.form.get('especie')
+    pet_encontrado['raca'] = request.form.get('raca')
+    pet_encontrado['idade'] = int(request.form.get('idade') or 0)
+    pet_encontrado['saude'] = request.form.get('estado_saude')
+    pet_encontrado['data_chegada'] = request.form.get('data_chegada')
+    pet_encontrado['comportamento'] = request.form.get('comportamento')
+
+    # --- Foto: se o usuário enviou nova foto, salva e atualiza o nome; se não, mantém a antiga ---
+    foto = request.files.get('foto')
+    if foto and foto.filename != "":
+        nome_arquivo = secure_filename(foto.filename)
+        caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo)
+        foto.save(caminho)
+        pet_encontrado['nome_arquivo'] = nome_arquivo
+    else:
+        pet_encontrado['nome_arquivo'] = pet_encontrado.get('nome_arquivo', 'padrao.jpg')
+    
+    # salva tudo de volta no csv
+    crud.salvar_animais(animais)
+
+    return redirect(url_for('ir_crud_pets'))
+
+
+#apagar
+@app.route("/encontrar_pet-apagar", methods=["POST"])
+def encontrar_pet_apagar():
+    nome = request.form["nome"]
+    pet = crud.buscar_pet_por_nome(nome)
+
+    if pet:
+        return redirect(url_for('apagar_pet', nome=pet['nome']))
+    else:
+        return render_template('404.html'), 404
+
+@app.route("/apagar_pet/<nome>")
+def apagar_pet(nome):
+    crud.apagar_pet_por_nome(nome)
+    return redirect("/crud_pets")  # volta para a página principal
+    
 
 # execucao
 app.run(debug=True)
