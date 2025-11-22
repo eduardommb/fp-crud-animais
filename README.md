@@ -1,38 +1,178 @@
-# Adoção+ 🐶
+# **Manual do usuario**
 
-Projeto Adoção+
+## **MENU**
 
-Descrição do Problema:
-Um centro de adoção de animais precisa controlar cães, gatos e outros pets, além de
-gerenciar informações sobre adoções, cuidados, vacinas e atividades diárias.
-Atualmente, o processo é manual e confuso, tornando difícil acompanhar saúde,
-histórico e adoções dos animais. Pensando nisso, vamos criar o sistema “Adoção+”,
-que ajudará a equipe a organizar todos os registros de forma prática e eficiente.
+- Ao iniciar o sistema você verá esta mesagem:
 
-Requisitos Funcionais:
-1. CRUD de Animais:
-O usuário poderá adicionar, visualizar, editar e excluir animais, com
-informações como: nome, espécie, raça, idade, estado de saúde, data de
-chegada e comportamento.
+```
+   === Sistema Adoção+ ===
+1. Adicionar Animal
+2. Ver Animais
+3. Editar Animal
+4. Excluir Animal
+5. Adicionar Cuidado/Atividade
+6. Ver Cuidados/Atividades
+7. Ver Datas
+8. Sugestões Personalizadas
+9. Adicionar Adotor
+10. Ver Adotores
+11. Editar Adotores
+12. Deletar Adotores
+0. Sair
+Escolha uma opção:
+```
 
-2. Cadastro de Cuidados e Atividades:
-O usuário poderá registrar tarefas para cada animal, como vacinas, banhos,
-consultas veterinárias, treino e etc. Cada tarefa com data prevista e
-responsável.
+- Para começar a mexer neste menu digite o número para qual a função desejada, no caso começe com o numero 1 para adicionar um animal
 
-3. Contagem Regressiva e Alertas:
-Ao visualizar o cadastro de um animal, o sistema exibirá quantos dias faltam
-para as próximas vacinas, consultas ou tarefas importantes cadastradas no
-item anterior.
+- **Atenção**: Digitar o número como inteiro e não como uma palavra.
 
-4. Armazenamento de Dados:
-Todos os registros serão salvos em arquivo .csv ou .txt, garantindo histórico
-completo de animais, tarefas e adoções.
+### Ao digitar o número 1 você sera levado a uma lista de informações necessárias nesta ordem:
 
-5. Sugestões Personalizadas:
-Com base na idade, espécie e comportamento do animal, o sistema poderá
-sugerir possíveis adotantes, cuidados especiais, compatibilidade com outros
-animais, atividades de socialização e etc.
+1. **Nome**: (Digite o nome do animal)
+2. **Espécie**: (Digite a espécie do animal, *ex: gato, cachorro, ave, etc...*)
+3. **Raça**: (Digite a raça do animal, *ex: vira-lata, chihuahua, siamês, etc...* )
+4. **Idade**: (Digite a idade do animal novamento como um numero inteiro e não por exemplo:"nove anos")
+5. **Saúde**: (Digite o estado de saúde do animal)
+6. **Data de chegada**: (Digite a que o animal chegou a clínica neste formato *dd/mm/aaaa*)
+7. **Comportamento**: (Digite o comportamento característico do animal, *ex:calmo, arisco, agitado, etc...* )
+8. **Nome do arquivo**: (Digite o nome do arquivo que deseja salvar a foto do animal)
 
-6. Funcionalidade Extra:
-Sejam Criativos.
+### Depois desses passos o primeiro arquivo .csv vai ser criado e você poderá proseguir
+
+- Ao digitar o número 2 você poderá visualizar as informações de cada animal que foi digitado.\
+ex:
+
+```
+Nome           Espécie        Raça           Idade   Saúde               Chegada        Comportamento
+------------------------------------------------------------------------------------------------------------
+bebe           cachorro       chihuahua      6       normal              21/11/2025     carente
+tyler          gato           gato de rua    5       doente              20/11/2025     agressivo
+
+```
+
+### Editar animal
+
+- Ao dicionar o número 3 será perguntado qual o nome do animal que deseja editar, digite conforme sua vontade.
+- O terminal irá passar pela mesma lista do numero 1 e pedirá para alterar as informações desejadas, **caso não queira alterar deixe em branco**.\
+ex:
+
+```
+Nova espécie (gato):
+Nova idade (5): 7
+```
+
+- No caso do exemplo acima a espécie não será alterada mas a idade do gato será alterada de 5 para 7 anos.
+
+### Excluir animal
+
+- Basta digitar o nome do animal que deseja excluir.\
+ex:
+
+```
+
+Digite o nome do animal que deseja editar: tyler
+```
+
+## Cuidados
+
+### Adicionar Cuidados
+
+- Para adicionar cuidados digite 5. 
+
+- Ao digitar 5 você será perguntado qual o nome do animal que deseja adicionar o cuidado e será apresentado a seguinte lista de informações:
+
+1. **Descrição do cuidado/atividade**: Digite aqui qual será a atividade do animal, *ex: banho, tosa, consulta, etc...*
+2. **Data prevista (dd/mm/aaaa)**: Digite a data desejada que a atividade precisa ser feita (no formato indicado).
+3. **Responsável**: Digite o nome do responsável pela a atividade.\
+ex:
+
+```
+=== Adicionar Cuidado/Atividade ===
+Descrição do cuidado/atividade: banho 
+Data prevista (dd/mm/aaaa): 01/12/2025
+Responsável: nininho
+```
+
+
+### Ver Cuidados/Atividades
+
+- Digite 6 para ver as atividades do animal
+- Digite o nome do animal desejado para ver atividades
+
+## Ver Datas
+
+- Para ver quantos dias faltam para a atividade de um animal digite 7 em ver datas
+- Digite o nome do animal que deseja ver as datas confore a tabela
+- Será exibido o tipo de atividade seguido pela data marcada e depois a quantidade de dias restantes\
+ex:
+
+```
+-------Cuidados de tyler:--------
+
+- consulta (13/12/2025): faltam 21 dias
+
+Pressione ENTER para continuar...
+
+```
+
+## Sugestões Personalizadas
+
+- Digite 8 para ver as principais sugestões para o animal
+- Digite o nome do animal que deseja ver as sugestões
+- As sugestões são divididas em:
+
+1. Perfil ideal de adotante: o melhor cenário de adotante conforme as caracteristicas do animal\
+    ex:  `Indicado para adotante experiente`
+2. Compatibilidade: para ver qual os melhores tipos de ambiente e interação do animal\
+    ex: `Compatível com outros cães ativos`
+3. Cuidados especiais: caso o animal possua certas características será exibido cuidados especiais necessários\
+    ex: `Processo de socialização gradual`
+4. Atividades recomendadas: Principais atividades que serão recomendadas ao animal\
+    ex: `Passeios frequentes, brincadeiras ao ar livre e treinamento básico`
+
+## Sistema de Adotante
+
+- Separamos um sistema para que cadastre uma lista de possiveis adotadores
+
+### Para adicionar um adotador
+
+Ao digitar 9 para adicionar um adotador você deverá preencher:
+
+1. **Nome Completo**: Digite o nome completo da pessoa
+2. **Idade**: Digite a idade da pessoa
+3. **Genero**: Digite o genero
+4. **Status**: Digite o Status que se encontra
+5. **Animal Querido**: Digite o tipo de animal que prefere adotar
+6. **Comportamento Animal**: Digite o comportamento desejado\
+exemplo:
+
+```
+=========CADASTRO DE ADOÇÃO========
+Nome Completo: Pedro Henrique Fonseca da Silva
+Idade: 30 
+Genero: masculino
+Status: casado
+Animal querido: cachorro
+Comportamento Animal: calmo
+```
+
+### Ver adotadores
+
+- Para ver os adotadores cadastrados digite 10
+- Estará separada pelas informações do item anterior\
+ex:
+
+```
+Nome                               Idade          Genero         Status         Animal Preferido    Comportamento Preferido
+========================================================================================================================   
+Elian Gabriel Andrade Cunha        22             Masculino      solteiro       gato                tranquilo
+Pedro Henrique Fonseca da Silva    30             masculino      casado         cachorro            calmo
+```
+
+### Deletar Adotadores
+
+- Para deletar um adotador digite 12
+- depois digite o nome completo do adotador que deseja deletar
+
+## Caso deseje encerrar as atividades basta digitar 0
+
