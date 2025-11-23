@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import CRUD as crud
+import Cuidados as cuidados
 
 # inicializacao
 app = Flask(__name__, static_folder='static')
@@ -162,7 +163,58 @@ def encontrar_pet_apagar():
 def apagar_pet(nome):
     crud.apagar_pet_por_nome(nome)
     return redirect("/crud_pets")  # volta para a página principal
+
+
+#ADD cuidados/tarefas
+@app.route("/encontrar_pet-tarefa", methods=["POST"])
+def encontrar_pet_tarefa():
+    print("entrou na funcao encontrar pet tarefa (post)")
+    nome = request.form["nome"]
+    tarefa = request.form["tarefa"]
+    descricao = request.form["descricao"]
+    data_prevista = request.form["data_prevista"]
+    responsavel = request.form["responsavel"]
+    anotacoes = request.form["anotacoes"]
+
+    pet = crud.buscar_pet_por_nome(nome)
+
+    if not pet:
+        return render_template('404.html'), 404
+
+    cuidados.adicionar_cuidado_web(id_pet=pet["id"],
+        nome_pet=pet["nome"],
+        nome_cuidado=tarefa,
+        descricao=descricao,
+        data_prevista=data_prevista,
+        responsavel=responsavel,
+        anotacoes=anotacoes)
+
+    return redirect(url_for('ir_crud_pets'))
+
+@app.route("/adicionar_tarefa/<int:pet_id>", methods=["GET"])
+def adicionar_tarefa_get(pet_id):
+    print("entrou na funcao adicionar tarefa get")
+    pet = crud.buscar_pet_por_id(pet_id)
+    if not pet:
+        return render_template('404.html'), 404
+    else:
+        return redirect(url_for('ir_crud_pets'))
+
+@app.route("/adicionar_tarefa/<int:pet_id>", methods=["POST"])
+def adicionar_tarefa(pet_id):
+    print("entrou na funcao adicionar tarefa post")
+    tarefa = request.form["tarefa"]
+    descricao = request.form["descricao"]
+    data_prevista = request.form["data_prevista"]
+    responsavel = request.form["responsavel"]
+    anotacoes = request.form["anotacoes"]
+
+    pet = crud.buscar_pet_por_id(pet_id)
+
     
+
+    return redirect(url_for('ir_crud_pets'))
+
 
 # execucao
 app.run(debug=True)

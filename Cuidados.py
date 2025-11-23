@@ -4,7 +4,7 @@ from sugestoes import mostrar_sugestoes
 import Adotores as a
 
 ARQUIVO_ANIMAIS = "animais.csv"
-ARQUIVO_CUIDADOS = "cuidados.csv" 
+ARQUIVO_CUIDADOS = "cuidados.csv"
 
 def limpar_tela():
     os.system("cls" if os.name == "nt" else "clear")
@@ -154,6 +154,14 @@ def adicionar_cuidado(animais):
             return
     print("\nAnimal não encontrado.")
     pausar()
+
+def adicionar_cuidado_web(id_pet, nome_pet, nome_cuidado, descricao, data_prevista, responsavel, anotacoes):
+    limpar_tela()
+    with open(ARQUIVO_CUIDADOS, "a", encoding="utf-8") as f:
+        linha = f"{id_pet};{nome_pet};{nome_cuidado};{descricao};{data_prevista};{responsavel};{anotacoes}\n"
+        f.write(linha)
+        print("\nCuidado/atividade registrado com sucesso!")
+    return
 
 def mostrar_cuidados(animais):
     limpar_tela()

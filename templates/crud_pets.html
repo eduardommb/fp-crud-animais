@@ -25,7 +25,7 @@
                 <button id="apagar" onclick="abrir_apagar()"><i class="fa-solid fa-trash"></i></button>
             </nav>
             <nav class="tarefas">
-                <button>Tarefas</button>
+                <button onclick="abrir_tarefa()">Tarefas</button>
             </nav>
         </nav>
     </header>
@@ -86,6 +86,24 @@
             </form>
         </nav>
 
+        <nav class="caixa-tarefa-container">
+            <form action="/encontrar_pet-tarefa" method="POST" id="caixa-tarefa">
+                <p>Digite o nome do pet e a tarefa que deseja atribuir:</p>
+                <div class="caixa-de-texto">
+                    <input type="text" placeholder="Nome do pet" id="input-tarefa-nome" name="nome">
+                    <input type="text" placeholder="Tarefa" id="input-tarefa-tarefa" name="tarefa">
+                    <input type="text" placeholder="Descrição" id="input-tarefa-descricao" name="descricao">
+                    <input type="text" placeholder="Profissional responsável" id="input-tarefa-profissional" name="responsavel">
+                    <input type="date" placeholder="Data prevista para a tarefa" id="input-tarefa-data" name="data_prevista">
+                    <input type="text" placeholder="Anotações" id="input-tarefa-anotacoes" name="anotacoes">
+                </div>
+                <div class="botoes">
+                    <button class="cancelar" onclick="voltar()" type="button">Cancelar</button>
+                    <button id="tarefa-confirmar" type="submit">Adicionar</button>
+                </div>
+            </form>
+        </nav>
+
     </main>
 </body>
 <script>
@@ -96,13 +114,19 @@
         document.querySelector('.caixa-editar-container').style.display = 'flex';
     }
 
-    
+    function abrir_tarefa() {
+        document.querySelector('.caixa-tarefa-container').style.display = 'flex';
+    }
+
     function abrir_apagar() {
         document.querySelector('.caixa-apagar-container').style.display = 'flex';
     }
+
+
     function voltar() {
         document.querySelector('.caixa-editar-container').style.display = 'none';
         document.querySelector('.caixa-apagar-container').style.display = 'none';
+        document.querySelector('.caixa-tarefa-container').style.display = 'none';
     }
 
     function confirmar_apagar() {

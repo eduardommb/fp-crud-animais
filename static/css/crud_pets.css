@@ -89,7 +89,7 @@ table td a {
 }
 
 .caixa-editar-container,
-.caixa-apagar-container {
+.caixa-apagar-container, .caixa-tarefa-container {
     display: none;
     position: absolute;
     top: 0;
@@ -102,13 +102,13 @@ table td a {
 }
 
 #caixa-editar,
-#caixa-apagar {
+#caixa-apagar, #caixa-tarefa {
     background-color: var(--cinza-claro);
     padding: 20px;
     border-radius: 10px;
 }
 
-#caixa-editar, #caixa-apagar p {
+#caixa-editar p, #caixa-apagar p, #caixa-tarefa p {
     font-weight: bold;
 }
 
@@ -144,7 +144,7 @@ table td a {
 }
 
 #editar-confirmar,
-#apagar-confirmar {
+#apagar-confirmar, #tarefa-confirmar {
     background-color: var(--azul);
     color: var(--branco);
     padding: 0.5rem 1rem;
