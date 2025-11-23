@@ -55,6 +55,7 @@ main{
 .infos_secn{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
 }
 
@@ -90,5 +91,14 @@ main{
     color: var(--branco);
     padding: 15px;
     width: 100%;
+    font-weight: bold;
+}
+
+.sugestoes{
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
     font-weight: bold;
 }

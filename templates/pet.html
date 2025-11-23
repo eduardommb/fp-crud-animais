@@ -48,6 +48,7 @@
                 </span>
                 <img src="{{ url_for('static', filename='fotos_pets/' + pet.nome_arquivo) }}" alt="">
             </div>
+            
             <div class="contagem_sugest">
                 <div class="contagem">
                     {% if not cuidados_info %}
@@ -66,7 +67,20 @@
                     </ul>
                     {% endif %}
                 </div>
-                <div class="sugestoes">sugestoes</div>
+                <div class="sugestoes">
+                    <h2>Sugestões para {{pet.nome}}</h2>
+                    {% if not sugestoes_info %}
+                    <p>Sem sugestões no momento.</p>
+                    {% else %}
+                    {% for i in sugestoes_info.values() %}
+                    {% for texto in i %}
+                    <ul>
+                        <li>{{ texto }}</li>
+                    </ul>
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         </section>
     </main>

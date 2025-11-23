@@ -5,6 +5,7 @@ import CRUD as crud
 import Cuidados as cuidados
 import Adotores as adot
 import data
+import sugestoes
 
 # inicializacao
 app = Flask(__name__, static_folder='static')
@@ -79,8 +80,11 @@ def ir_pagina_pet(id_pet):
     for a in animais:
         if a["id"] == id_pet:
             cuidados_info = data.data_cuidados_web(id_pet)
-            print(cuidados_info)
-            return render_template("pet.html", pet=a, cuidados_info=cuidados_info)
+            sugestoes_info = sugestoes.gerar_sugestoes(a)
+
+            print(sugestoes_info)
+            
+            return render_template("pet.html", pet=a, cuidados_info=cuidados_info, sugestoes_info=sugestoes_info)
     return render_template('404.html'), 404
 
 #editar
