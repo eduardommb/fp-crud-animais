@@ -33,14 +33,16 @@
                 <ul>Comportamento observado: {{pet.comportamento}}</ul>
             </div>
             <div class="botao">
-                <button>Tarefas</button>
+                <button onclick="window.location.href='/tarefas/{{pet.id}}'">Tarefas</button>
             </div>
         </section>
 
         <section class="infos_secn">
             <div class="foto-container">
                 <span>
-                    <i class="fa-solid fa-pencil"></i>
+                    <a href="{{ url_for('editar_pet', id=pet.id) }}" aria-label="Editar pet">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
                 </span>
                 <img src="{{ url_for('static', filename='fotos_pets/' + pet.nome_arquivo) }}" alt="">
             </div>

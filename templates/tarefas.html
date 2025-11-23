@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas atribuídas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tarefas.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+</head>
+<body>
+    <header>
+        <span>
+            <a href="{{ url_for('ir_crud_pets') }}" aria-label="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </span>
+        <nav class="titulos">
+            <p>Tarefas atribuídas a {{pet_info.nome}}</p>
+            <div class="logo">
+                <p class="nome_adocao">Adoção</p>
+                <p class="plus">+</p>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Pet</th>
+                    <th>Tarefa</th>
+                    <th>Descrição</th>
+                    <th>Profissional responsável</th>
+                    <th>Data prevista</th>
+                    <th>Anotações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in pet %}
+                <tr>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.nome_pet }}</a></td>
+                    <td>{{ a.nome_cuidado}}</td>
+                    <td>{{ a.descricao }}</td>
+                    <td>{{ a.responsavel }}</td>
+                    <td>{{ a.data_prevista }}</td>
+                    <td>{{ a.anotacoes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

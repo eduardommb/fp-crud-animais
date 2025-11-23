@@ -70,9 +70,11 @@ main{
     object-fit: cover;
 }
 
-.foto-container span i{
+
+.foto-container span a i{
     font-size: 1rem;
     background-color: var(--cinza);
+    color: var(--preto);
     padding: 10px;
     border-radius: 50px;
     cursor: pointer;

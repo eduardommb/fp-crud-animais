@@ -215,6 +215,14 @@ def adicionar_tarefa(pet_id):
 
     return redirect(url_for('ir_crud_pets'))
 
+#pag tarefas
+@app.route("/tarefas/<int:pet_id>")
+def ir_tarefas(pet_id):
+    pet = cuidados.mostrar_cuidaddos_web(pet_id)
+    pet_info = crud.buscar_pet_por_id(pet_id)
+    if not pet:
+        return render_template('404.html'), 404
+    return render_template("tarefas.html", pet=pet, pet_info=pet_info)
 
 # execucao
 app.run(debug=True)

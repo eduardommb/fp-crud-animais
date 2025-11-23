@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 from sugestoes import mostrar_sugestoes
 import Adotores as a
+import CRUD as crud
 
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv"
@@ -184,6 +185,24 @@ def mostrar_cuidados(animais):
     print("\nAnimal não encontrado.")
     pausar()
 
+def mostrar_cuidaddos_web(pet_id):
+    id_procurar = str(pet_id).strip()
+    cuidados = []
+    with open(ARQUIVO_CUIDADOS, "r", encoding="utf-8") as f:
+        for linha in f:
+            dados = linha.strip().split(";")
+            if dados[0] == id_procurar:
+                cuidado = {
+                    "id": dados[0],
+                    "nome_pet": dados[1],
+                    "nome_cuidado": dados[2],
+                    "descricao": dados[3],
+                    "data_prevista": dados[4],
+                    "responsavel": dados[5],
+                    "anotacoes": dados[6]
+                }
+                cuidados.append(cuidado)
+    return cuidados
 
 def menu():
     animais = carregar_animais()
