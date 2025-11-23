@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 import CRUD as crud
 import Cuidados as cuidados
 import Adotores as adot
+import data
 
 # inicializacao
 app = Flask(__name__, static_folder='static')
@@ -77,7 +78,9 @@ def ir_pagina_pet(id_pet):
     animais = crud.carregar_animais()
     for a in animais:
         if a["id"] == id_pet:
-            return render_template("pet.html", pet=a)
+            cuidados_info = data.data_cuidados_web(id_pet)
+            print(cuidados_info)
+            return render_template("pet.html", pet=a, cuidados_info=cuidados_info)
     return render_template('404.html'), 404
 
 #editar
@@ -219,6 +222,9 @@ def ir_tarefas(pet_id):
     if not pet:
         return render_template('404.html'), 404
     return render_template("tarefas.html", pet=pet, pet_info=pet_info)
+
+
+
 
 #---------------------pagina adotantes------------------------
 @app.route('/crud_adotantes')

@@ -2,11 +2,12 @@ import os
 import datetime
 from datetime import datetime,date,timedelta
 import datetime
+from Cuidados import mostrar_cuidaddos_web
 
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv" 
 
-from Parte_do_CRUD import limpar_tela, mostrar_tabela, pausar
+from CRUD import limpar_tela, mostrar_tabela, pausar
 from Cuidados import salvar_animais, adicionar_cuidado
 
 def limpar_tela():
@@ -74,6 +75,18 @@ def calcular_data(data_prevista):
 
     return diferença.days
 
+#calculo data web
+def calcular_data_web(data_prevista):
+    ano, mes, dia = map(int, data_prevista.split("-"))
+
+    data_consulta = datetime.date(ano, mes, dia)
+    
+    data_atual = datetime.date.today()
+    
+    diferença = data_consulta - data_atual
+
+    return diferença.days
+
 def data_cuidados(animal):
     if "cuidados" not in animal or len(animal["cuidados"]) == 0:
         print("\nEste animal não possui cuidados registrados.")
@@ -84,6 +97,34 @@ def data_cuidados(animal):
     for c in animal["cuidados"]:
         dias = calcular_data(c["data_prevista"])
         print(f"- {c['descricao']} ({c['data_prevista']}):faltam {dias} dias")
+
+def data_cuidados_web(id_pet):
+    lista = []
+
+    with open(ARQUIVO_CUIDADOS, "r", encoding="utf-8") as f:
+        linhas = f.readlines()
+
+    for linha in linhas:
+        campos = linha.strip().split(";")
+
+        if len(campos) < 7:
+            continue  # linha que não tem campos suficientes
+
+        id_csv, nome_pet, nome_cuidado, descricao, data_prevista, responsavel, anotacoes = campos
+
+        if str(id_pet) == id_csv.strip():
+            dias = calcular_data_web(data_prevista)
+
+            lista.append({
+                "nome_cuidado": nome_cuidado,
+                "descricao": descricao,
+                "data_prevista": data_prevista,
+                "responsavel": responsavel,
+                "anotacoes": anotacoes,
+                "dias_faltando": dias
+            })
+
+    return lista
 
 def data_especifica(animais):
     nome_do_animal=input("digite o nome do animal que deseja ver a data:").lower()
@@ -98,5 +139,18 @@ def data_especifica(animais):
         else:
             print("animal não encontrado")
             
+def data_especifica_web(id_pet):
+    cuidados_pet = mostrar_cuidaddos_web(id_pet)
 
-        
+    lista_final = []
+
+    for c in cuidados_pet:
+        dias = calcular_data_web(c["data_prevista"])
+        lista_final.append({
+            "nome_cuidado": c["nome_cuidado"],
+            "data_prevista": c["data_prevista"],
+            "descricao": c["descricao"],
+            "dias_faltando": dias
+        })
+
+    return lista_final
