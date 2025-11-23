@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/crud_adotantes.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+    <title>Dados dos adotantes cadastrados</title>
+</head>
+
+<body>
+    <header>
+        <nav class="titulos">
+            <p>Adotantes</p>
+            <div class="logo">
+                <p class="nome_adocao">Adoção</p>
+                <p class="plus">+</p>
+            </div>
+        </nav>
+        <nav class="funcoes">
+            <nav class="opcoes">
+                <button id="add" onclick="abrir_criar()"><i class="fa-solid fa-plus"></i></button>
+                <button id="editar" onclick="abrir_editar()"><i class="fa-solid fa-pencil"></i></button>
+                <button id="apagar" onclick="abrir_apagar()"><i class="fa-solid fa-trash"></i></button>
+            </nav>
+        </nav>
+    </header>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Gênero</th>
+                    <th>Status</th>
+                    <th>Animal desejado</th>
+                    <th>Comportamento desejado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in lista_adotantes %}
+                <tr>
+                    <td>{{ a.nome }}</a></td>
+                    <td>{{ a.idade }} anos</td>
+                    <td>{{ a.genero }}</td>
+                    <td>{{ a.status }}</td>
+                    <td>{{ a.animal }}</td>
+                    <td>{{ a.comportamento }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <nav class="caixa-editar-container">
+            <form action="/encontrar_adotante" method="POST" id="caixa-editar">
+                <p>Digite o nome do adotante em que deseja editar: </p>
+                <div class="caixa-de-texto">
+                    <input type="text" placeholder="Nome do adotante" id="input-editar" name="nome">
+                </div>
+                <div class="botoes">
+                    <button class="cancelar" onclick="voltar()" type="button">Cancelar</button>
+                    <button id="editar-confirmar" type="submit">Editar</button>
+                </div>
+            </form>
+        </nav>
+
+        <nav class="caixa-apagar-container">
+            <form action="/encontrar_adotante-apagar" method="POST" id="caixa-apagar">
+                <p>Digite o nome do adotante em que deseja apagar: </p>
+                <div class="caixa-de-texto">
+                    <input type="text" placeholder="Nome do adotante" id="input-apagar" name="nome">
+                </div>
+                <div class="botoes">
+                    <button class="cancelar" onclick="voltar()" type="button">Cancelar</button>
+                    <button id="apagar-confirmar" type="submit">Apagar</button>
+                </div>
+            </form>
+        </nav>
+    </main>
+</body>
+<script>
+    function abrir_criar() {
+        window.location.href = "/criar_adotante";
+    }
+    function abrir_editar() {
+        document.querySelector('.caixa-editar-container').style.display = 'flex';
+    }
+
+    function abrir_apagar() {
+        document.querySelector('.caixa-apagar-container').style.display = 'flex';
+    }
+
+
+    function voltar() {
+        document.querySelector('.caixa-editar-container').style.display = 'none';
+        document.querySelector('.caixa-apagar-container').style.display = 'none';
+    }
+
+    function confirmar_apagar() {
+        const nomeAdotante = document.getElementById('input-apagar').value;
+        let confirmacao = confirm(`Tem certeza que deseja apagar o adotante ${nomeAdotante}?`);
+        if (confirmacao) {
+            console.log("Apagando adotante:");
+        }
+    }
+</script>
+
+</html>

@@ -76,7 +76,6 @@ def buscar_pet_por_id(id_procurar):
     return None
 
 
-
 def mostrar_tabela(animais):
     if not animais:
         print("Nenhum animal cadastrado ainda.")

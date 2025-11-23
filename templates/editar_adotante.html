@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/criar_adotante.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+    <title>Editar um adotante</title>
+</head>
+
+<body>
+    <header>
+        <span>
+            <a href="{{ url_for('ir_crud_adotantes') }}" aria-label="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </span>
+    </header>
+    <main>
+        <div class="titulo">
+            <h1>Editar Adotante</h1>
+        </div>
+        <form action="/editar_adotante/{{ adotante.nome }}" method="post" enctype="multipart/form-data">
+            <div class="infos-container">
+                <div class="info-gerais">
+                    <h1>Informações Gerais</h1>
+                    <input type="text" id="nome" name="nome" required placeholder="Nome" value="{{ adotante.nome }}">
+                    <input type="number" id="idade" name="idade" required placeholder="Idade" value="{{ adotante.idade }}">
+                    <input type="text" id="genero" name="genero" required placeholder="Gênero" value="{{ adotante.genero }}">
+                    <input type="text" id="status" name="status" required placeholder="Status" value="{{ adotante.status }}">
+                </div>
+                <hr>
+                <div class="info_saude">
+                    <h1>Características desejadas</h1>
+                    <input type="text" name="animal" placeholder="Animal desejado" id="animal" value="{{ adotante.animal }}">
+                    <input type="text" name="comportamento" id="comportamento" placeholder="Comportamento desejado" value="{{ adotante.comportamento }}">
+                </div>
+            </div>
+            <div class="botao">
+                <button type="submit" onclick="editarAdotante()">Editar</button>
+            </div>
+        </form>
+    </main>
+</body>
+<script>
+    function editarAdotante() {
+        let nome = document.getElementById('nome').value;
+        let idade = document.getElementById('idade').value;
+        let genero = document.getElementById('genero').value;
+        let status = document.getElementById('status').value;
+        let animal = document.getElementById('animal').value;
+        let comportamento = document.getElementById('comportamento').value;
+
+        if (!nome || !genero || !idade || !status || !animal || !comportamento) {
+            alert("Preencha todos os campos obrigatórios!");
+            return;
+        }
+
+        // Se estiver tudo ok, envia o formulário
+        document.querySelector("form").submit();
+    }
+</script>
+
+</html>

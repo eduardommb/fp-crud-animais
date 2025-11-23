@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import CRUD as crud
 import Cuidados as cuidados
+import Adotores as adot
 
 # inicializacao
 app = Flask(__name__, static_folder='static')
@@ -19,6 +20,10 @@ crud_adotantes = 'crud_adotantes'
 def ir_home():
     return render_template('index.html', crud_pets=crud_pets, crud_adotantes=crud_adotantes)
 
+@app.route("/crud_pets")
+def ir_crud_pets():
+    lista_pets = crud.carregar_animais()
+    return render_template('crud_pets.html', lista_pets=lista_pets)
 
 # ---------- GET (abre o formulário) ----------
 @app.route('/criar_pet', methods=['GET'])
@@ -65,15 +70,6 @@ def criar_pet():
     return redirect(url_for('ir_crud_pets'))
 
 
-@app.route("/crud_pets")
-def ir_crud_pets():
-    lista_pets = crud.carregar_animais()
-    return render_template('crud_pets.html', lista_pets=lista_pets)
-
-
-@app.route('/crud_adotantes')
-def ir_crud_adotantes():
-    return render_template('crud_adotantes.html')
 
 
 @app.route('/pet/<int:id_pet>')
@@ -223,6 +219,103 @@ def ir_tarefas(pet_id):
     if not pet:
         return render_template('404.html'), 404
     return render_template("tarefas.html", pet=pet, pet_info=pet_info)
+
+#---------------------pagina adotantes------------------------
+@app.route('/crud_adotantes')
+def ir_crud_adotantes():
+    return render_template('crud_adotantes.html', lista_adotantes=adot.ListAdotar())
+
+@app.route('/criar_adotante', methods=['GET'])
+def ir_criar_adotantes():
+    return render_template('criar_adotante.html')
+
+@app.route('/criar_adotante', methods=['POST'])
+def criar_adotantes():
+    nome = request.form['nome']
+    idade = request.form['idade']
+    genero = request.form['genero']
+    status = request.form['status']
+    animal = request.form['animal']
+    comportamento = request.form['comportamento']
+
+    try:
+        idade = int(idade)
+    except ValueError:
+        idade = 0
+
+    # salvar no csv
+    adot.adicionar_adotante(
+        nome,
+        idade,
+        genero,
+        status,
+        animal,
+        comportamento
+    )
+
+    return redirect(url_for('ir_crud_adotantes'))
+
+#editar
+@app.route("/encontrar_adotante", methods=["POST"])
+def encontrar_adotante():
+    nome = request.form["nome"]
+    adotante = adot.buscar_adotante_por_nome(nome)
+
+    if adotante:
+        return redirect(url_for('editar_adotante', nome=adotante['nome']))
+    else:
+        return render_template('404.html'), 404
+
+@app.route("/editar_adotante/<nome>")
+def editar_adotante(nome):
+    adotantes = adot.ListAdotar()
+    adotante = adot.buscar_adotante_por_nome(nome)
+    if not adotantes:
+        return render_template('404.html'), 404
+    else:
+        return render_template("editar_adotante.html", adotante=adotante)
+
+@app.route("/editar_adotante/<nome>", methods=["POST"])
+def editar_adotante_post(nome):
+    print("entrou na funcao editar adotante_post<str:nome>")
+    adotantes = adot.ListAdotar()
+    adotante_encontrado = None
+    for a in adotantes:
+        if a["nome"] == nome:
+            adotante_encontrado = a
+            break
+
+    if not adotante_encontrado:
+        return render_template('404.html'), 404
+
+    # pega dados do form
+    adotante_encontrado['nome'] = request.form.get('nome')
+    adotante_encontrado['idade'] = int(request.form.get('idade')) or 0
+    adotante_encontrado['genero'] = request.form.get('genero')
+    adotante_encontrado['status'] = request.form.get('status')
+    adotante_encontrado['animal'] = request.form.get('animal')
+    adotante_encontrado['comportamento'] = request.form.get('comportamento')
+    
+    # salva tudo de volta no csv
+    adot.SaveAdopt(adotantes)
+
+    return redirect(url_for('ir_crud_adotantes'))
+
+#apagar
+@app.route("/encontrar_adotante-apagar", methods=["POST"])
+def encontrar_adotante_apagar():
+    nome = request.form["nome"]
+    adotante = adot.buscar_adotante_por_nome(nome)
+
+    if adotante:
+        return redirect(url_for('apagar_adotante', nome=adotante['nome']))
+    else:
+        return render_template('404.html'), 404
+
+@app.route("/apagar_adotante/<nome>")
+def apagar_adotante(nome):
+    adot.apagar_adotante_por_nome(nome)
+    return redirect("/crud_adotantes")  # volta para a página principal
 
 # execucao
 app.run(debug=True)

@@ -49,6 +49,19 @@ def AddAdotar(adotores):
     c.pausar()
     return
 
+#adicionar adotante web
+def adicionar_adotante(nome, idade, genero, status, animal, comportamento):
+    adotantes = ListAdotar()
+    novo_adotante = {
+        "nome": nome,
+        "idade": idade,
+        "genero": genero,
+        "status": status,
+        "animal": animal,
+        "comportamento": comportamento
+    }
+    adotantes.append(novo_adotante)
+    SaveAdopt(adotantes)
 
 # Arquivo separado dos animais para organizar
 def SaveAdopt(adotores):
@@ -69,6 +82,16 @@ def MostrarAdopt(adotores):
     for i in adotores:
         print(f"{i['nome']:<15}{i['idade']:<15}{i['genero']:<15}{i['status']:<8}{i['animal']:<20}{i['comportamento']:<15}")
 
+#buscar adotante pelo html
+def buscar_adotante_por_nome(nome):
+    print("entrou na funcao buscar adotante por nome")
+    adotantes = ListAdotar()
+    nome_procurar = nome.strip().lower()
+    for a in adotantes:
+        if a["nome"].strip().lower() == nome_procurar:
+            print("Adotante encontrado!")
+            return a
+    return None
 
 
 # editar, mesmo systema
@@ -108,3 +131,14 @@ def DelAdopt(adotores):
         if (yn == "N"):
             c.pausar()
             return
+
+#apagar adotante pelo html
+def apagar_adotante_por_nome(nome):
+    adotantes = ListAdotar()
+    nome_procurar = nome.strip().lower()
+    for a in adotantes:
+        if a["nome"].strip().lower() == nome_procurar:
+            adotantes.remove(a)
+            SaveAdopt(adotantes)
+            print("Adotante apagado com sucesso!")
+            return True
