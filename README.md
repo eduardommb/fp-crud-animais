@@ -174,5 +174,44 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 - Para deletar um adotador digite 12
 - depois digite o nome completo do adotador que deseja deletar
 
+
 ## Caso deseje encerrar as atividades basta digitar 0
 
+# Interface grafica
+- Ao entrar no site da nossa interface grafica você vera duas opções:\
+<br>
+![](<imagensmd/Captura de tela 2025-11-24 124601.png>)
+
+## Dados dos Animais
+### CRUD
+- Ao clicar em conferir os dados dos animais você vera uma tabela com todos os animais cadastrados\
+<br>
+![](<imagensmd/Captura de tela 2025-11-24 130217.png>)
+<br>
+<br>
+- No canto superior esquerdo você vera tres opções: *adicionar, editar e excluir nesta ordem*:
+1. **Adicionar** lhe levará a uma tela pedindo todas as informações previamente discutidas:\
+<br>
+![](<imagensmd/Captura de tela 2025-11-24 130352.png>)
+<br>
+2. **Editar** lhe pedirá um nome dentro da tabela para editar e depois lhe levará para a mesma tela de adicionar mas com as informações ja postas\
+<br>
+![](<imagensmd/Captura de tela 2025-11-24 130838.png>)\
+<br>
+![](image.png)\
+<br>
+3. **Excluir** irá pedir novamente o nome do animal que deseja exluir e depois é so apagar
+
+### Interface do Animal
+- Ao clicar no animal desejado na lista você poderá ver todas as informações cadastradas do animal bem como sugestões personalizadas e os dias restantes para as tarefas registradas(Proximo ponto a ser mostrado)
+![](<imagensmd/Captura de tela 2025-11-24 131544.png>)
+
+### Tarefas
+- Ao clicar no botão **Tarefas** no canto superior direito você será levado a um cadastro que deverá conter as informações previamente discutidas sobre Cuidados/Atividades como o tipo de tarefa e o responsavel\
+<br>
+![](<imagensmd/Captura de tela 2025-11-24 131248.png>)
+<br>
+<br>
+- Você pode acessar as tarefas cadastradas ao clicar em **Tarefas** na página do animal(imagem acima)
+<br>
+![](image-1.png)
