@@ -1,4 +1,3 @@
-import os
 import datetime
 from datetime import datetime,date,timedelta
 import datetime
@@ -6,63 +5,6 @@ from Cuidados import mostrar_cuidaddos_web
 
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv" 
-
-from CRUD import limpar_tela, mostrar_tabela, pausar
-from Cuidados import salvar_animais, adicionar_cuidado
-
-def limpar_tela():
-    os.system("cls" if os.name == "nt" else "clear")
-
-def mostrar_tabela(animais):
-    if not animais:
-        print("Nenhum animal cadastrado ainda.")
-        return
-    
-    print()
-    print(f"{'Nome':<15}{'Espécie':<15}{'Raça':<15}{'Idade':<8}{'Saúde':<20}{'Chegada':<15}{'Comportamento':<20}")
-    print("-" * 108)
-    for a in animais:
-        print(f"{a['nome']:<15}{a['especie']:<15}{a['raca']:<15}{a['idade']:<8}{a['saude']:<20}{a['data_chegada']:<15}{a['comportamento']:<20}")
-    
-def pausar():
-    input("\nPressione ENTER para continuar...")
-
-def salvar_animais(animais):
-    with open(ARQUIVO_ANIMAIS, "w", encoding="utf-8") as arquivo:
-        for a in animais:
-            cuidados_list = a.get("cuidados", [])
-            cuidados_str = "||".join([f"{c['descricao']}|{c['data_prevista']}|{c['responsavel']}" for c in cuidados_list])
-            linha = f"{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']};{cuidados_str}\n"
-            arquivo.write(linha)
-
-
-def adicionar_cuidado(animais):
-    limpar_tela()
-    mostrar_tabela(animais)
-    nome = input("\nDigite o nome do animal para adicionar um cuidado/atividade: ")
-    for a in animais:
-        if a["nome"].lower() == nome.lower():
-            print("\n=== Adicionar Cuidado/Atividade ===")
-            descricao = input("Descrição do cuidado/atividade: ")
-            data_prevista = input("Data prevista (dd/mm/aaaa): ")
-            responsavel = input("Responsável: ")
-        
-            cuidado = {
-                "descricao": descricao,
-                "data_prevista": data_prevista,
-                "responsavel": responsavel
-            }
-            if "cuidados" not in a:
-                a["cuidados"] = []
-            a["cuidados"].append(cuidado)
-            salvar_animais(animais)
-            print("\nCuidado/atividade registrado com sucesso!")
-            pausar()
-            return
-    print("\nAnimal não encontrado.")
-    pausar()
-
-#--------------------------------------------------- parte nova -----------------------------------------------------------------
 
 def calcular_data(data_prevista):
     dia, mes, ano = map(int, data_prevista.split("/"))
@@ -106,9 +48,6 @@ def data_cuidados_web(id_pet):
 
     for linha in linhas:
         campos = linha.strip().split(";")
-
-        if len(campos) < 7:
-            continue  # linha que não tem campos suficientes
 
         id_csv, nome_pet, nome_cuidado, descricao, data_prevista, responsavel, anotacoes = campos
 

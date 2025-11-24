@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 
 ARQUIVO_ANIMAIS = "animais.csv"
 
@@ -105,7 +104,8 @@ def adicionar_animal(nome, especie, raca, idade, saude, data_chegada, comportame
     animais.append(animal)
     salvar_animais(animais)
     print("\nAnimal cadastrado com sucesso!")
-    pausar()
+    if __name__ == "__main__":
+        pausar()
 
 
 def editar_animal(animais):
@@ -210,5 +210,3 @@ def menu():
 
 if __name__ == "__main__":
     menu()
-
-
