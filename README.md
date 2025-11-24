@@ -194,7 +194,7 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 <br>
 <img width="1917" height="912" alt="Image" src="https://github.com/user-attachments/assets/de14c6b9-7fef-4fb8-b8b7-d1840c21cb2f" />
 <br>
-2. **Editar** lhe pedirá um nome dentro da tabela para editar e depois lhe levará para a mesma tela de adicionar mas com as informações ja postas\
+2. **Editar** lhe pedirá um nome dentro da tabela para editar e depois lhe levará para a mesma tela de adicionar mas com as informações ja postas
 <br>
 <img width="448" height="204" alt="Image" src="https://github.com/user-attachments/assets/dad0ddc3-5643-417c-a4c6-ef7b9e7c0d4f" />
 <br>
@@ -203,15 +203,15 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 3. **Excluir** irá pedir novamente o nome do animal que deseja exluir e depois é so apagar
 
 ### Interface do Animal
-- Ao clicar no animal desejado na lista você poderá ver todas as informações cadastradas do animal bem como sugestões personalizadas e os dias restantes para as tarefas registradas(Proximo ponto a ser mostrado)\
+- Ao clicar no animal desejado na lista você poderá ver todas as informações cadastradas do animal bem como sugestões personalizadas e os dias restantes para as tarefas registradas(Proximo ponto a ser mostrado)
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20131544.png)
+<img width="1666" height="890" alt="Image" src="https://github.com/user-attachments/assets/13f44789-d8f4-4a6e-b2eb-453c3e50522f" />
 <br>
 
 ### Tarefas
-- Ao clicar no botão **Tarefas** no canto superior direito você será levado a um cadastro que deverá conter as informações previamente discutidas sobre Cuidados/Atividades como o tipo de tarefa e o responsavel\
+- Ao clicar no botão **Tarefas** no canto superior direito você será levado a um cadastro que deverá conter as informações previamente discutidas sobre Cuidados/Atividades como o tipo de tarefa e o responsavel
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20131248.png)
+<img width="524" height="405" alt="Image" src="https://github.com/user-attachments/assets/fe9c71ed-7118-480a-a0eb-10f238f63b14" />
 <br>
 <br>
 <br>
