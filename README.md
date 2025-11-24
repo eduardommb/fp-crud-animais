@@ -186,33 +186,35 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 ### CRUD
 - Ao clicar em conferir os dados dos animais você vera uma tabela com todos os animais cadastrados
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20130217.png)
+<img width="1919" height="914" alt="Image" src="https://github.com/user-attachments/assets/ab38c0b8-c34f-4223-80d2-702568cfe109" />
 <br>
 <br>
-- No canto superior esquerdo você vera tres opções: *adicionar, editar e excluir nesta ordem*:
+- No canto superior esquerdo você vera tres opções: *adicionar, editar e excluir nesta ordem*:\
 1. **Adicionar** lhe levará a uma tela pedindo todas as informações previamente discutidas:
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20130352.png)
+<img width="1917" height="912" alt="Image" src="https://github.com/user-attachments/assets/de14c6b9-7fef-4fb8-b8b7-d1840c21cb2f" />
 <br>
 2. **Editar** lhe pedirá um nome dentro da tabela para editar e depois lhe levará para a mesma tela de adicionar mas com as informações ja postas\
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20130838.png)
+<img width="448" height="204" alt="Image" src="https://github.com/user-attachments/assets/dad0ddc3-5643-417c-a4c6-ef7b9e7c0d4f" />
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20130849.png)
+<img width="1762" height="574" alt="Image" src="https://github.com/user-attachments/assets/1128273b-eb50-429b-a333-4cf84cfd8195" />
 <br>
 3. **Excluir** irá pedir novamente o nome do animal que deseja exluir e depois é so apagar
 
 ### Interface do Animal
 - Ao clicar no animal desejado na lista você poderá ver todas as informações cadastradas do animal bem como sugestões personalizadas e os dias restantes para as tarefas registradas(Proximo ponto a ser mostrado)\
+<br>
 ![](imagensmd/Captura%20de%20tela%202025-11-24%20131544.png)
 <br>
 
 ### Tarefas
 - Ao clicar no botão **Tarefas** no canto superior direito você será levado a um cadastro que deverá conter as informações previamente discutidas sobre Cuidados/Atividades como o tipo de tarefa e o responsavel\
+<br>
 ![](imagensmd/Captura%20de%20tela%202025-11-24%20131248.png)
 <br>
 <br>
 <br>
 - Você pode acessar as tarefas cadastradas ao clicar em **Tarefas** na página do animal(imagem acima)
 <br>
-![](imagensmd/Captura%20de%20tela%202025-11-24%20132433.png)
+<img width="1885" height="895" alt="Image" src="https://github.com/user-attachments/assets/85dede61-8dae-4525-b4ec-4b62ce2bbc12" />
