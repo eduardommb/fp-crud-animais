@@ -174,5 +174,45 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 - Para deletar um adotador digite 12
 - depois digite o nome completo do adotador que deseja deletar
 
+
 ## Caso deseje encerrar as atividades basta digitar 0
 
+# Interface grafica
+- Ao entrar no site da nossa interface grafica você vera duas opções:
+<br>
+<img width="1919" height="916" alt="Image" src="https://github.com/user-attachments/assets/37b5dab0-114c-47d3-9990-2c97b5b17fbc" />
+
+## Dados dos Animais
+### CRUD
+- Ao clicar em conferir os dados dos animais você vera uma tabela com todos os animais cadastrados
+<br>
+![](imagensmd/Captura%20de%20tela%202025-11-24%20130217.png)
+<br>
+<br>
+- No canto superior esquerdo você vera tres opções: *adicionar, editar e excluir nesta ordem*:
+1. **Adicionar** lhe levará a uma tela pedindo todas as informações previamente discutidas:
+<br>
+![](imagensmd/Captura%20de%20tela%202025-11-24%20130352.png)
+<br>
+2. **Editar** lhe pedirá um nome dentro da tabela para editar e depois lhe levará para a mesma tela de adicionar mas com as informações ja postas\
+<br>
+![](imagensmd/Captura%20de%20tela%202025-11-24%20130838.png)
+<br>
+![](imagensmd/Captura%20de%20tela%202025-11-24%20130849.png)
+<br>
+3. **Excluir** irá pedir novamente o nome do animal que deseja exluir e depois é so apagar
+
+### Interface do Animal
+- Ao clicar no animal desejado na lista você poderá ver todas as informações cadastradas do animal bem como sugestões personalizadas e os dias restantes para as tarefas registradas(Proximo ponto a ser mostrado)\
+![](imagensmd/Captura%20de%20tela%202025-11-24%20131544.png)
+<br>
+
+### Tarefas
+- Ao clicar no botão **Tarefas** no canto superior direito você será levado a um cadastro que deverá conter as informações previamente discutidas sobre Cuidados/Atividades como o tipo de tarefa e o responsavel\
+![](imagensmd/Captura%20de%20tela%202025-11-24%20131248.png)
+<br>
+<br>
+<br>
+- Você pode acessar as tarefas cadastradas ao clicar em **Tarefas** na página do animal(imagem acima)
+<br>
+![](imagensmd/Captura%20de%20tela%202025-11-24%20132433.png)
