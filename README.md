@@ -180,7 +180,7 @@ Pedro Henrique Fonseca da Silva    30             masculino      casado         
 # Interface grafica
 - Ao entrar no site da nossa interface grafica você vera duas opções:
 <br>
-![](https://raw.githubusercontent.com/eduardommb/fp-crud-animais/main/imagensmd/Captura%20de%20tela%202025-11-24%20124601.png?raw=true)
+<img width="1919" height="916" alt="Image" src="https://github.com/user-attachments/assets/37b5dab0-114c-47d3-9990-2c97b5b17fbc" />
 
 ## Dados dos Animais
 ### CRUD
