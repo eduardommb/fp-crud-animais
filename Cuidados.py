@@ -83,7 +83,7 @@ def mostrar_tabela_cuidados(cuidados):
 
 def adicionar_cuidado(animais):
     crud.limpar_tela()
-    mostrar_tabela(animais)
+    crud.mostrar_tabela(animais)
     nome = input("\nDigite o nome do animal para adicionar um cuidado/atividade: ")
     for a in animais:
         if a["nome"].lower() == nome.lower():
