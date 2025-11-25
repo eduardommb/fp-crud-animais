@@ -1,4 +1,23 @@
 # **Manual do usuario**
+## **Como executar**
+O projeto possui duas formas de execução:
+### Via terminal
+Apenas inicie o arquivo `main.py`
+
+Ou no terminal digite:
+```
+python main.py
+```
+
+### Via web
+1. Instale a biblioteca do flask:
+
+    No terminal:
+```
+pip install flask
+```
+
+2. Execute o arquivo `main.py`
 
 ## **MENU**
 
