@@ -4,50 +4,14 @@ from sugestoes import mostrar_sugestoes
 import Adotores as a
 import CRUD as crud
 
-
 ARQUIVO_ANIMAIS = "animais.csv"
 ARQUIVO_CUIDADOS = "cuidados.csv" 
 
-def limpar_tela():
-    os.system("cls" if os.name == "nt" else "clear")
-
-def pausar():
-    input("\nPressione ENTER para continuar...")
-
-
-def carregar_animais():
-    animais = []
-    try:
-        with open(ARQUIVO_ANIMAIS, "r", encoding="utf-8") as arquivo:
-            for linha in arquivo:
-                dados = linha.strip().split(";")
-                if len(dados) >= 7:
-                    animal = {
-                        "nome": dados[0],
-                        "especie": dados[1],
-                        "raca": dados[2],
-                        "idade": int(dados[3]),
-                        "saude": dados[4],
-                        "data_chegada": dados[5],
-                        "comportamento": dados[6]
-                    }
-                    animais.append(animal)
-    except FileNotFoundError:
-        pass
-    return animais
-
-def salvar_animais(animais):
-    with open(ARQUIVO_ANIMAIS, "w", encoding="utf-8") as arquivo:
-        for a in animais:
-            linha = f"{a['nome']};{a['especie']};{a['raca']};{a['idade']};{a['saude']};{a['data_chegada']};{a['comportamento']}\n"
-            arquivo.write(linha)
-
-
-def salvar_cuidado(nome_animal, descricao, data_prevista, responsavel):
+def salvar_cuidado(id_pet, nome_animal, nome_cuidado, descricao, data_prevista, responsavel, anotacoes):
     """Salva um cuidado diretamente no ARQUIVO_CUIDADOS."""
     try:
         with open(ARQUIVO_CUIDADOS, "a", encoding="utf-8") as arquivo:
-            linha = f"{nome_animal};{descricao};{data_prevista};{responsavel}\n"
+            linha = f"{id_pet};{nome_animal};{nome_cuidado};{descricao};{data_prevista};{responsavel};{anotacoes}\n"
             arquivo.write(linha)
     except Exception as e:
         print(f"Erro ao salvar cuidado: {e}")
@@ -59,11 +23,15 @@ def carregar_cuidados_animal(nome_animal):
         with open(ARQUIVO_CUIDADOS, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 dados = linha.strip().split(";")
-                if len(dados) == 4 and dados[0].lower() == nome_animal.lower():
+                if len(dados) == 7 and dados[1].lower() == nome_animal.lower():
                     cuidado = {
-                        "descricao": dados[1],
-                        "data_prevista": dados[2],
-                        "responsavel": dados[3]
+                        "id_pet": dados[0],
+                        "nome_pet": dados[1],
+                        "nome_cuidado": dados[2],
+                        "descricao": dados[3],
+                        "data_prevista": dados[4],
+                        "responsavel": dados[5],
+                        "anotacoes": dados[6]
                     }
                     cuidados.append(cuidado)
     except FileNotFoundError:
@@ -72,101 +40,71 @@ def carregar_cuidados_animal(nome_animal):
         print(f"Erro ao carregar cuidados: {e}")
     return cuidados
 
+def carregar_cuidados():
+    cuidados = []
+    try:
+        with open(ARQUIVO_CUIDADOS, "r", encoding="utf-8") as f:
+            for linha in f:
+                dados = linha.strip().split(";")
+                if len(dados) == 7:
+                    cuidados.append({
+                        "id_pet": int(dados[0]),
+                        "nome_pet": dados[1],
+                        "nome_cuidado": dados[2],
+                        "descricao": dados[3],
+                        "data_prevista": dados[4],
+                        "responsavel": dados[5],
+                        "anotacoes": dados[6]
+                    })
+    except FileNotFoundError:
+        pass
+    return cuidados
 
-def mostrar_tabela(animais):
-    if not animais:
-        print("Nenhum animal cadastrado ainda.")
+def mostrar_cuidados_pet(id_pet):
+    cuidados = carregar_cuidados()
+    resultados = []
+    for c in cuidados:
+        if c["id_pet"] == id_pet:
+            resultados.append(c)
+
+    return print(resultados)
+
+
+def mostrar_tabela_cuidados(cuidados):
+    if not cuidados:
+        print("Nenhum cuidado cadastrado ainda.")
         return
 
     print()
-    print(f"{'Nome':<15}{'Espécie':<15}{'Raça':<15}{'Idade':<8}{'Saúde':<20}{'Chegada':<15}{'Comportamento':<20}")
+    print(f"{'Nome':<15}{'Nome do cuidado':<15}{'Descrição':<15}{'Responsável':<8}{'Data prevista':<20}{'Anotações':<15}")
     print("-" * 108)
-    for a in animais:
-        print(f"{a['nome']:<15}{a['especie']:<15}{a['raca']:<15}{a['idade']:<8}{a['saude']:<20}{a['data_chegada']:<15}{a['comportamento']:<20}")
-
-def adicionar_animal(animais):
-    limpar_tela()
-    print("=== Adicionar Novo Animal ===")
-    nome = input("Nome: ")
-    especie = input("Espécie: ")
-    raca = input("Raça: ")
-    idade = int(input("Idade: "))
-    saude = input("Estado de saúde: ")
-    data_chegada = input("Data de chegada (dd/mm/aaaa): ")
-    comportamento = input("Comportamento: ")
-
-    animal = {
-        "nome": nome,
-        "especie": especie,
-        "raca": raca,
-        "idade": idade,
-        "saude": saude,
-        "data_chegada": data_chegada,
-        "comportamento": comportamento,
-    }
-    animais.append(animal)
-    salvar_animais(animais)
-    print("\nAnimal cadastrado com sucesso!")
-    pausar()
-
-def editar_animal(animais):
-    limpar_tela()
-    mostrar_tabela(animais)
-    nome = input("\nDigite o nome do animal que deseja editar: ")
-    for a in animais:
-        if a["nome"].lower() == nome.lower():
-            print("\nDeixe em branco caso não queira alterar.")
-            a["especie"] = input(f"Nova espécie ({a['especie']}): ") or a["especie"]
-            a["raca"] = input(f"Nova raça ({a['raca']}): ") or a["raca"]
-            nova_idade = input(f"Nova idade ({a['idade']}): ")
-            if nova_idade:
-                a["idade"] = int(nova_idade)
-            a["saude"] = input(f"Novo estado de saúde ({a['saude']}): ") or a["saude"]
-            a["data_chegada"] = input(f"Nova data de chegada ({a['data_chegada']}): ") or a["data_chegada"]
-            a["comportamento"] = input(f"Novo comportamento ({a['comportamento']}): ") or a["comportamento"]
-            salvar_animais(animais)
-            print("\nAnimal atualizado com sucesso!")
-            pausar()
-            return
-    print("\nAnimal não encontrado.")
-    pausar()
-
-def excluir_animal(animais):
-    limpar_tela()
-    mostrar_tabela(animais)
-    nome = input("\nDigite o nome do animal que deseja excluir: ")
-    for a in animais:
-        if a["nome"].lower() == nome.lower():
-            animais.remove(a)
-            salvar_animais(animais)
-            print("\nAnimal removido com sucesso!")
-            pausar()
-            return
-    print("\nAnimal não encontrado.")
-    pausar()
-
+    for a in cuidados:
+        print(f"{a['nome_pet']:<15}{a['nome_cuidado']:<15}{a['descricao']:<15}{a['responsavel']:<8}{a['data_prevista']:<20}{a['anotacoes']:<15}")
 
 def adicionar_cuidado(animais):
-    limpar_tela()
+    crud.limpar_tela()
     mostrar_tabela(animais)
     nome = input("\nDigite o nome do animal para adicionar um cuidado/atividade: ")
     for a in animais:
         if a["nome"].lower() == nome.lower():
             print("\n=== Adicionar Cuidado/Atividade ===")
+            id_pet = a["id"]
+            nome_cuidado = input("Nome do cuidado/atividade: ")
             descricao = input("Descrição do cuidado/atividade: ")
-            data_prevista = input("Data prevista (dd/mm/aaaa): ")
+            data_prevista = input("Data prevista (dd-mm-aaaa): ")
             responsavel = input("Responsável: ")
+            anotacoes = input("Anotações adicionais: ")
 
-            salvar_cuidado(a["nome"], descricao, data_prevista, responsavel)
+            salvar_cuidado(id_pet, a["nome"], nome_cuidado, descricao, data_prevista, responsavel, anotacoes)
             
             print("\nCuidado/atividade registrado com sucesso!")
-            pausar()
+            crud.pausar()
             return
     print("\nAnimal não encontrado.")
-    pausar()
+    crud.pausar()
 
 def adicionar_cuidado_web(id_pet, nome_pet, nome_cuidado, descricao, data_prevista, responsavel, anotacoes):
-    limpar_tela()
+    crud.limpar_tela()
     with open(ARQUIVO_CUIDADOS, "a", encoding="utf-8") as f:
         linha = f"{id_pet};{nome_pet};{nome_cuidado};{descricao};{data_prevista};{responsavel};{anotacoes}\n"
         f.write(linha)
@@ -174,28 +112,30 @@ def adicionar_cuidado_web(id_pet, nome_pet, nome_cuidado, descricao, data_previs
     return
 
 def mostrar_cuidados(animais):
-    limpar_tela()
-    mostrar_tabela(animais)
+    crud.limpar_tela()
+    mostrar_tabela_cuidados(animais)
     nome = input("\nDigite o nome do animal para ver os cuidados/atividades: ")
     for a in animais:
-        if a["nome"].lower() == nome.lower():
-            limpar_tela()
-            print(f"=== Cuidados/Atividades para {a['nome']} ===")
+        if a["nome_pet"].lower() == nome.lower():
+            crud.limpar_tela()
+            print(f"=== Cuidados/Atividades para {a['nome_pet']} ===")
             
-            cuidados_do_animal = carregar_cuidados_animal(a["nome"])
-
+            cuidados_do_animal = carregar_cuidados_animal(a["nome_pet"])
             if cuidados_do_animal:
                 for cuidado in cuidados_do_animal:
+                    print(f"- ID do pet: {cuidado['id_pet']}")
+                    print(f"- Nome do cuidado: {cuidado['nome_cuidado']}")
                     print(f"- Descrição: {cuidado['descricao']}")
                     print(f"  Data Prevista: {cuidado['data_prevista']}")
                     print(f"  Responsável: {cuidado['responsavel']}")
+                    print(f"  Anotações: {cuidado['anotacoes']}")
                     print("-" * 30)
             else:
                 print("Nenhum cuidado/atividade registrado para este animal ainda.")
-            pausar()
+            crud.pausar()
             return
     print("\nAnimal não encontrado.")
-    pausar()
+    crud.pausar()
 
 def mostrar_cuidaddos_web(pet_id):
     id_procurar = str(pet_id).strip()
@@ -218,60 +158,3 @@ def mostrar_cuidaddos_web(pet_id):
     except FileNotFoundError:
         pass
     return cuidados
-
-
-def menu():
-    animais = carregar_animais()
-    adotores = a.ListAdotar()
-    while True:
-        limpar_tela()
-        print("=== Sistema Adoção+ ===")
-        print("1. Adicionar Animal")
-        print("2. Ver Animais")
-        print("3. Editar Animal")
-        print("4. Excluir Animal")
-        print("5. Adicionar Cuidado/Atividade")
-        print("6. Ver Cuidados/Atividades") 
-        print("7. Sugestões Personalizadas")
-        print("8. Adicionar Adotor")
-        print("9. Ver Adotores")
-        print("10. Editar Adotores")
-        print("11. Deletar Adotores")
-        print("0. Sair")
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            adicionar_animal(animais)
-        elif opcao == "2":
-            limpar_tela()
-            mostrar_tabela(animais)
-            pausar()
-        elif opcao == "3":
-            editar_animal(animais)
-        elif opcao == "4":
-            excluir_animal(animais)
-        elif opcao == "5": 
-            adicionar_cuidado(animais)
-        elif opcao == "6": 
-            mostrar_cuidados(animais)
-        elif opcao == "7":
-            mostrar_sugestoes(animais)
-        elif opcao == "8":
-            a.AddAdotar(adotores)
-        elif opcao == "9":
-            limpar_tela()
-            a.MostrarAdopt(adotores)
-            pausar()
-        elif opcao == "10":
-            a.EditAdopt(adotores)
-        elif opcao == "11":
-            a.DelAdopt(adotores)
-        elif opcao == "0":
-            print("Saindo do sistema...")
-            break
-        else:
-            print("Opção inválida!")
-            pausar()
-
-if __name__ == "__main__":
-    menu()

@@ -65,18 +65,20 @@ def data_cuidados_web(id_pet):
 
     return lista
 
-def data_especifica(animais):
-    nome_do_animal=input("digite o nome do animal que deseja ver a data:").lower()
-    for c in animais:
-        if 'cuidados' not in c:
-            print("Este animal não possui cuidados cadastrados")
+def data_especifica(cuidados):
+    nome_do_animal=input("Digite o nome do animal que deseja ver a data: ").lower().strip()
+    cuidados_pet = []
+    for c in cuidados:
+        if 'nome_pet' in c and c['nome_pet'].lower() == nome_do_animal:
+            cuidados_pet.append(c)
 
-        elif nome_do_animal==c['nome'].lower():
-            for d in c['cuidados']:
-                dias=calcular_data(d['data prevista'])
-                print(f"- {d['descricao']} ({d['data_prevista']}):faltam {dias} dias")
-        else:
-            print("animal não encontrado")
+    if not cuidados_pet:
+        print("Este animal não possui cuidados cadastrados.")
+        return
+
+    for c in cuidados_pet:
+        dias = calcular_data_web(c["data_prevista"])
+        print(f"- {c['descricao']} ({c['data_prevista']}): faltam {dias} dias")
             
 def data_especifica_web(id_pet):
     cuidados_pet = mostrar_cuidaddos_web(id_pet)

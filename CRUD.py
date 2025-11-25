@@ -1,5 +1,8 @@
 import os
-
+from Cuidados_definitivo import mostrar_cuidados, adicionar_cuidado, carregar_cuidados
+from sugestoes import mostrar_sugestoes
+from Adotores import AddAdotar, MostrarAdopt, EditAdopt, DelAdopt
+from data import data_especifica
 ARQUIVO_ANIMAIS = "animais.csv"
 
 def limpar_tela():
@@ -172,6 +175,14 @@ def menu():
         print("2. Ver Animais")
         print("3. Editar Animal")
         print("4. Excluir Animal")
+        print("5. Adicionar Cuidado/Atividade")
+        print("6. Ver Cuidados/Atividades") 
+        print("7. Ver Datas")
+        print("8. Sugestões Personalizadas")
+        print("9. Adicionar Adotante")
+        print("10. Ver Adotantes")
+        print("11. Editar Adotantes")
+        print("12. Deletar Adotantes")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -198,6 +209,35 @@ def menu():
 
         elif opcao == "4":
             excluir_animal(animais)
+
+        elif opcao == "5": 
+            adicionar_cuidado(animais)
+
+        elif opcao == "6": 
+            cuidados = carregar_cuidados()
+            mostrar_cuidados(cuidados)
+
+        elif opcao == "7":
+            cuidados = carregar_cuidados()
+            data_especifica(cuidados)
+            pausar()
+
+        elif opcao == "8":
+            mostrar_sugestoes(animais)
+
+        elif opcao == "9":
+            AddAdotar()
+
+        elif opcao == "10":
+            limpar_tela()
+            MostrarAdopt()
+            pausar()
+
+        elif opcao == "11":
+            EditAdopt()
+
+        elif opcao == "12":
+            DelAdopt()
 
         elif opcao == "0":
             print("Saindo do sistema...")

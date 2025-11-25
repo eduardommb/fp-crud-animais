@@ -1,4 +1,4 @@
-import Cuidados as c
+import CRUD as c
 
 ARQUIVO_ADOTORES = "donos.csv"
 
@@ -23,9 +23,9 @@ def ListAdotar():
         pass
     return a
 
-
+adotores =[]
 # Adionar pessoa
-def AddAdotar(adotores):
+def AddAdotar():
     c.limpar_tela()
     print("=========CADASTRO DE ADOÇÃO========")
     nm = input("Nome Completo: ")
@@ -72,12 +72,13 @@ def SaveAdopt(adotores):
 
 
 # Mostrar, iqual animal
-def MostrarAdopt(adotores):
+def MostrarAdopt():
+    adotores = ListAdotar()
     if not adotores:
         print("Registre Primeiro!")
     
     print()
-    print(f"{'Nome':<15}{'Idade':<15}{'Genero':<15}{'Status':<8}{'Animal Preferido':<20}{'Compatemnto Preferido':<15}")
+    print(f"{'Nome':<15}{'Idade':<15}{'Genero':<15}{'Status':<10}{'Animal Preferido':<20}{'Compatemnto Preferido':<15}")
     print("=" * 108)
     for i in adotores:
         print(f"{i['nome']:<15}{i['idade']:<15}{i['genero']:<15}{i['status']:<8}{i['animal']:<20}{i['comportamento']:<15}")
@@ -95,10 +96,11 @@ def buscar_adotante_por_nome(nome):
 
 
 # editar, mesmo systema
-def EditAdopt(adotores):
+def EditAdopt():
     c.limpar_tela()
-    MostrarAdopt(adotores)
-    sel = input("\n \nnome de quem quer Editar: ")
+    adotores = ListAdotar()
+    MostrarAdopt()
+    sel = input("\n \nNome de quem quer Editar: ")
     for a in adotores:
         if a["nome"].lower() == sel.lower():
             print("\nDeixe em branco caso não queira alterar.")
@@ -110,14 +112,15 @@ def EditAdopt(adotores):
             a["animal"] = input(f"Novo Animal querido ({a['animal']}): ") or a["animal"]
             a["comportamento"] = input(f"Novo comportamento querido ({a['comportamento']}): ") or a["comportamento"]
             SaveAdopt(adotores)
-            print("\nAnimal atualizado com sucesso!")
+            print("\nAdotante atualizado com sucesso!")
             c.pausar()
-            return
+    return
 
-def DelAdopt(adotores):
+def DelAdopt():
+    adotores = ListAdotar()
     while True:
         c.limpar_tela()
-        MostrarAdopt(adotores)
+        MostrarAdopt()
         nm = input("\n \nNome Completo do adotor que deseja deletar: ")
         for a in adotores:
             if a["nome"].lower() == nm.lower():
