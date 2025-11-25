@@ -85,7 +85,7 @@ def gerar_sugestoes(animal):
 
 
 def mostrar_sugestoes(animais):
-    from Cuidados import limpar_tela, mostrar_tabela, pausar
+    from CRUD import limpar_tela, mostrar_tabela, pausar
 
     limpar_tela()
     mostrar_tabela(animais)

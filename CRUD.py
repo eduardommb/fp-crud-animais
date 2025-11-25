@@ -1,5 +1,5 @@
 import os
-from Cuidados_definitivo import mostrar_cuidados, adicionar_cuidado, carregar_cuidados
+from Cuidados import mostrar_cuidados, adicionar_cuidado, carregar_cuidados
 from sugestoes import mostrar_sugestoes
 from Adotores import AddAdotar, MostrarAdopt, EditAdopt, DelAdopt
 from data import data_especifica
