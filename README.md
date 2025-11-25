@@ -81,16 +81,20 @@ Digite o nome do animal que deseja editar: tyler
 
 - Ao digitar 5, você será perguntado qual o nome do animal que deseja adicionar o cuidado e será apresentado a seguinte lista de informações:
 
-1. **Descrição do cuidado/atividade**: Digite aqui qual será a atividade do animal, *ex: banho, tosa, consulta, etc...*
+1. **Nome do cuidado/atividade: **: Digite aqui qual será a atividade do animal, *ex: banho, tosa, consulta, etc...*
+1. **Descrição do cuidado/atividade**: Digite uma descrição sobre o que é/ o que se trata esse cuidado. 
 2. **Data prevista (dd-mm-aaaa)**: Digite a data desejada que a atividade precisa ser feita (no formato indicado).
 3. **Responsável**: Digite o nome do responsável pela a atividade.\
+4. **Anotações adicionais**: Digite alguma anotação extra *ex: recomendações, tipo do remédio, etc. (opcional)*
 ex:
 
 ```
 === Adicionar Cuidado/Atividade ===
-Descrição do cuidado/atividade: banho 
+Nome do cuidado/atividade: banho
+Descrição do cuidado/atividade: banho completo 
 Data prevista (dd/mm/aaaa): 01/12/2025
 Responsável: nininho
+Anotações adicionais: usar shampoo e condicionador
 ```
 
 
